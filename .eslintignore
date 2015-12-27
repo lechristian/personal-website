@@ -1,0 +1,4 @@
+node_modules/**
+dist/**
+src/server/index.html
+src/styles/**

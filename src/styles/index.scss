@@ -1,0 +1,27 @@
+@import './vendors/normalize';
+@import './base';
+
+*,
+*:after,
+*:before {
+  box-size: border-box;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  height: 100%;
+}
+
+input, textarea {
+  border: 1px solid $grey;
+  border-radius: 0px;
+  outline: none;
+}

@@ -1,0 +1,15 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "rules": {
+    "semi": [ 2, "always" ],
+    "comma-dangle": 0,
+    "no-console": 0,
+    "func-names": 0
+  },
+  "plugins": [
+    "eslint-plugin-babel"
+  ]
+}

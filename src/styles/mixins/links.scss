@@ -1,0 +1,14 @@
+@mixin link($color) {
+  background: none;
+  text-decoration: none;
+  color: $color;
+  cursor: pointer;
+  opacity: 1;
+
+  transition: opacity 0.1s;
+
+  &:hover {
+    opacity: 0.75;
+    text-decoration: underline;
+  }
+}
