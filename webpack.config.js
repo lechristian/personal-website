@@ -10,6 +10,7 @@ const path = require('path');
 const webpack = require('webpack');
 const cssnano = require('cssnano');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackOutputStatsPlugin = require('./utils/webpack-output-stats-plugin');
 
 const nodeEnvironment = process.env.NODE_ENV;
 
@@ -92,7 +93,8 @@ if (nodeEnvironment === 'production' || nodeEnvironment === 'staging') {
       new webpack.optimize.UglifyJsPlugin({
         minimize: true,
         screw_ie8: false
-      })
+      }),
+      new WebpackOutputStatsPlugin()
     ]
   });
 } else {

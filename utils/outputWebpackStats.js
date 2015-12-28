@@ -5,16 +5,18 @@
  * Borrowed/modified from [write-stats.js](https://goo.gl/PE49Jw) by iam4x
  * ========================================================================== */
 
-import fs from 'fs-extra';
-import path from 'path';
+'use strict';
+
+const fs = require('fs-extra');
+const path = require('path');
 
 const statsFileName = 'webpack-stats.json';
 const statsPath = path.resolve(__dirname, '../', statsFileName);
 
-export default (stats, publicPath) => {
+module.exports = function(stats, publicPath) {
   const json = stats.toJson();
 
-  const getChunks = (name, ext = /.js$/) => {
+  const getChunks = function(name, ext) {
     let chunks = json.assetsByChunkName[name];
 
     if (!(Array.isArray(chunks))) {

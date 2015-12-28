@@ -12,13 +12,10 @@ class Home extends Component {
     let logo;
     if (process.env.BROWSER) {
       logo = require('../../../static/images/logo.png');
-      console.log(process.env.BROWSER);
-      console.log(logo);
     } else {
       logo = imageResolver('logo.png');
-      console.log(false);
-      console.log(logo);
     }
+
     return (
       <div className="page page--home">
         <div className="logo">
