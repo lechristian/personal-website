@@ -1,5 +1,5 @@
 /* ==========================================================================
- * ./src/shared/components/app/index.js
+ * ./src/shared/components/app.js
  *
  * React/Redux App
  * ========================================================================== */
@@ -10,6 +10,7 @@
 // import classNames from 'classnames';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DocumentTitle from 'react-document-title';
 import Home from './home';
 
 class App extends Component {
@@ -21,21 +22,23 @@ class App extends Component {
     const { } = this.props;
 
     return (
-      <div className="container">
-        <div className="nav">
+      <DocumentTitle title="Christian Le">
+        <div className="container">
+          <div className="nav">
 
+          </div>
+          <div className="content">
+            { !this.props.children && <Home /> }
+            { this.props.children }
+          </div>
         </div>
-        <div className="content">
-          { !this.props.children && <Home /> }
-          { this.props.children }
-        </div>
-      </div>
+      </DocumentTitle>
     );
   }
 }
 
 App.propTypes = {
-  children: React.PropTypes.element.isRequired
+  children: React.PropTypes.element
 };
 
 function mapStateToProps(state) {

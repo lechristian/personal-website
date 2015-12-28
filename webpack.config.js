@@ -1,3 +1,11 @@
+/* ==========================================================================
+ * ./webpack.config.js
+ *
+ * Webpack config
+ * ========================================================================== */
+
+'use strict';
+
 const path = require('path');
 const webpack = require('webpack');
 const cssnano = require('cssnano');
@@ -18,9 +26,6 @@ let webpackConfig = {
     filename: 'bundle.js',
     publicPath: '/static/'
   },
-  plugins: [
-    new webpack.NoErrorsPlugin()
-  ],
   postcss: [
     cssnano({
       sourcemap: true,
@@ -55,8 +60,15 @@ if (nodeEnvironment === 'production' || nodeEnvironment === 'staging') {
           include: __dirname
         },
         {
-          test: /\.(png|jpg|gif|jpeg)$/,
-          loader: 'url-loader?limit=8192'
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
+        },
+        {
+          test: /\.json$/,
+          loader: 'json'
         },
         {
           test: /\.scss$/,
@@ -68,10 +80,12 @@ if (nodeEnvironment === 'production' || nodeEnvironment === 'staging') {
       ]
     },
     plugins: [
+      new webpack.NoErrorsPlugin(),
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify('production')
+          NODE_ENV: JSON.stringify('production'),
+          BROWSER: JSON.stringify(true)
         }
       }),
       new ExtractTextPlugin('style.css'),
@@ -131,8 +145,15 @@ if (nodeEnvironment === 'production' || nodeEnvironment === 'staging') {
           }
         },
         {
-          test: /\.(png|jpg|gif|jpeg)$/,
-          loader: 'url-loader?limit=8192'
+          test: /\.json$/,
+          loader: 'json'
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=[hash].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
         },
         {
           test: /\.scss$/,
@@ -146,7 +167,13 @@ if (nodeEnvironment === 'production' || nodeEnvironment === 'staging') {
       ]
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.NoErrorsPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          BROWSER: JSON.stringify(true)
+        }
+      })
     ]
   });
 

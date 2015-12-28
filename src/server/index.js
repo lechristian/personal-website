@@ -14,11 +14,14 @@ import webpackConfig from 'webpack.config';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
+import outputWebpackStats from 'utils/outputWebpackStats';
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 import { Provider } from 'react-redux';
+import DocumentTitle from 'react-document-title';
 import { fetchComponentData } from 'src/shared/api/fetchComponentData';
 
 import configureStore from 'src/shared/store/configureStore';
@@ -28,8 +31,13 @@ import renderHtml from 'src/server/renderHTML';
 
 const app = express();
 
+delete process.env.BROWSER;
+
 if (process.env.NODE_ENV !== 'production') {
-  const compiler = webpack(webpackConfig);
+  const compiler = webpack(webpackConfig, (err, stats) => {
+    outputWebpackStats(stats, webpackConfig.output.publicPath);
+  });
+
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     quiet: false,
@@ -70,13 +78,14 @@ app.get('*', (req, res) => {
       renderProps.params
     ).then(() => {
       const componentHTML = renderToString(InitialView);
+      const title = DocumentTitle.rewind();
       const initialState = store.getState();
       console.log(logColors.cSuccess('Server Side Rendered: OK'));
-      res.status(200).end(renderHtml(componentHTML, initialState));
+      res.status(200).end(renderHtml(componentHTML, initialState, title));
     })
     .catch(error => {
       console.log(logColors.cDanger('[110] ' + error.toString()));
-      res.end(renderHtml('', {}));
+      res.end(renderHtml('', {}, 'Christian Le'));
     });
   });
 });
