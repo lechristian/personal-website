@@ -7,10 +7,10 @@
 import { Route } from 'react-router';
 import React from 'react';
 
-import App from './components/app';
+import App from 'src/shared/components/app';
 
-import HomePage from './components/home';
-import Error404 from './components/404';
+import HomePage from 'src/shared/components/home';
+import Error404 from 'src/shared/components/404';
 
 export default (
   <Route name="app" path="/" component={ App }>

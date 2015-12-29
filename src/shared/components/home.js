@@ -5,21 +5,14 @@
  * ========================================================================== */
 
 import React, { Component } from 'react';
-import imageResolver from '../../../utils/imageResolver';
+import requireImage from 'utils/requireImage';
 
 class Home extends Component {
   render() {
-    let logo;
-    if (process.env.BROWSER) {
-      logo = require('../../../static/images/logo.png');
-    } else {
-      logo = imageResolver('logo.png');
-    }
-
     return (
       <div className="page page--home">
         <div className="logo">
-          <img src={ logo.toString() } />
+          <img src={ requireImage('logo.png').toString() } />
         </div>
       </div>
     );

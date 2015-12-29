@@ -11,7 +11,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
-import Home from './home';
+import Home from 'src/shared/components/home';
 
 class App extends Component {
   constructor(props) {

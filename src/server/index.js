@@ -22,7 +22,7 @@ import createLocation from 'history/lib/createLocation';
 import { RoutingContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import DocumentTitle from 'react-document-title';
-import { fetchComponentData } from 'src/shared/api/fetchComponentData';
+import { fetchComponentData } from 'src/shared/api/utils/fetchComponentData';
 
 import configureStore from 'src/shared/store/configureStore';
 import routes from 'src/shared/routes';

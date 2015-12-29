@@ -9,9 +9,9 @@ import { reduxReactRouter } from 'redux-router';
 import thunk from 'redux-thunk';
 import createHistory from 'history/lib/createBrowserHistory';
 import createLogger from 'redux-logger';
-import promiseMiddleware from '../api/promiseMiddleware';
-import rootReducer from '../reducers';
-import DevTools from '../../client/devTools';
+import promiseMiddleware from 'src/shared/api/utils/promiseMiddleware';
+import rootReducer from 'src/shared/reducers';
+import DevTools from 'src/client/devTools';
 
 const generateMiddlware = () => {
   const universalMiddleware = [

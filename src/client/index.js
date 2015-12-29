@@ -10,12 +10,12 @@ import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import showDevTools from './showDevTools';
+import showDevTools from 'src/client/showDevTools';
 
-import configureStore from '../shared/store/configureStore';
-import routes from '../shared/routes';
+import configureStore from 'src/shared/store/configureStore';
+import routes from 'src/shared/routes';
 
-import '../styles/index.scss';
+import 'src/styles/index.scss';
 
 const history = createBrowserHistory();
 const initialState = window.__INITIAL_STATE__;

@@ -23,9 +23,18 @@ Object.assign = Object.assign || require('object-assign');
 
 let webpackConfig = {
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
+  },
+  resolve: {
+    root: [
+      path.resolve(__dirname),
+      path.resolve(__dirname, 'node_modules')
+    ],
+    alias: {
+      imgsRoot: path.resolve(__dirname, 'static/images')
+    }
   },
   postcss: [
     cssnano({

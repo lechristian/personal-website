@@ -9,7 +9,9 @@
  * Borrowed/modified from [image-resolver.js](https://goo.gl/vsFnZZ) by iam4x
  * ========================================================================== */
 
-export default (imagePath) => {
+'use strict';
+
+module.exports = function imageResolver(imagePath) {
   const images = require('../webpack-stats.json').images;
 
   const regex = new RegExp(`${ imagePath }$`);

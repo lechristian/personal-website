@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import DevTools from './devTools';
+import DevTools from 'src/client/devTools';
 
 export default function showDevTools(store) {
   const name = 'Redux DevTools';
