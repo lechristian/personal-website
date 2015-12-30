@@ -1,24 +1,29 @@
 h1, .h1 {
   @include font-size(3);
+  font-weight: normal;
 }
 
 h2, .h2 {
   @include font-size(2);
+  font-weight: normal;
 }
 
 h3, .h3 {
   @include font-size(1.5);
+  font-weight: normal;
 }
 
 h4, .h4 {
   @include font-size(1.15);
+  font-weight: normal;
 }
 
-p {
+p, .p {
   @include font-size(1);
+  font-weight: normal;
 }
 
-a {
+a, .a {
   font-size: inherit;
   font-color: inherit;
   text-decoration: none;
@@ -43,7 +48,7 @@ a {
 }
 
 b, .bold {
-  font-weight: 700;
+  font-weight: 600;
   font-weight: bold;
 }
 

@@ -10,8 +10,17 @@ $d-grey: #3D444E;
 $black: #0D1622;
 
 // Font Size
-$font-family: "Open Sans", "Roboto", "Helvetica", "Arial", sans-serif;
+$font-family: "Source Sans Pro", "Roboto", "Helvetica", "Arial", sans-serif;
+$font-family-title: "Merriweather", serif;
 $font-family-monospace: "Source Code Pro", monospace;
 $base-font-size: 16px;
 $base-font-color: $black;
 $base-font-weight: normal;
+
+// Sizes
+$size-terminal-pane: 35%;
+$size-content-pane: 65%;
+$size-bottom-pane: 80px;
+
+// Break Points
+$break-point-terminal: 1025px;

@@ -3,14 +3,14 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: $size-bottom-pane;
   background: $black;
   z-index: 2;
 
-  @media screen and (min-width: 880px) {
+  @media screen and (min-width: $break-point-terminal) {
     top: 0;
     left: 0;
-    width: 35%;
+    width: $size-terminal-pane;
     height: 100%;
     overflow-y: scroll;
   }

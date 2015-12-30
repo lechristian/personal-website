@@ -8,6 +8,7 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import DocumentTitle from 'react-document-title';
 
 const mdExt = /\.md$/;
 const preNum = /^[0-9]*\-/;
@@ -25,22 +26,29 @@ class Blurbs extends Component {
       const blurbFileName = blurb.file.replace(mdExt, '').replace(preNum, '');
       rows.push(
         <Link to={ `blurb/${ blurbFileName }` }>
-          <div className="row--blurb">
-            <div className="title">
+          <div className="row">
+            <h3 className="row--title bold">
               { blurb.title }
-            </div>
-            <div className="title">
+            </h3>
+            <p className="row--desc">
               { blurb.description }
-            </div>
+            </p>
           </div>
         </Link>
       );
     });
 
     return (
-      <div className="page page--blurbs">
-        { rows }
-      </div>
+      <DocumentTitle title="Blurbs | Christian Le">
+        <div className="page page--blurbs">
+          <h1 className="title center">
+            Blurbs
+          </h1>
+          <div className="rows">
+            { rows }
+          </div>
+        </div>
+      </DocumentTitle>
     );
   }
 }

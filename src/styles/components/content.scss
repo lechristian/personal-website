@@ -8,8 +8,8 @@
   overflow-y: auto;
   z-index: 1;
 
-  @media screen and (min-width: 880px) {
-    left: 35%;
-    width: 65%;
+  @media screen and (min-width: $break-point-terminal) {
+    left: $size-terminal-pane;
+    width: $size-content-pane;
   }
 }

@@ -1,0 +1,17 @@
+.row {
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px dotted $m-grey;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .row--title {
+    margin-bottom: 4px;
+  }
+
+  .row--desc {
+    color: $d-grey;
+  }
+}

@@ -4,6 +4,11 @@
   margin: 0 auto;
   padding: 10px;
 
+  .title {
+    font-family: $font-family-title;
+    letter-spacing: 0.15rem;
+  }
+
   @media screen and (min-width: 880px) {
     padding: 15px;
   }
