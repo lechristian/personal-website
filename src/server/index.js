@@ -5,6 +5,7 @@
  * ========================================================================== */
 
 import express from 'express';
+import fs from 'fs-extra';
 import config from 'config';
 
 import logColors from 'config/colors';
@@ -24,10 +25,38 @@ import { Provider } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 import { fetchComponentData } from 'src/shared/api/utils/fetchComponentData';
 
+import { getBlurbs } from 'src/shared/api/blurbs';
+
 import configureStore from 'src/shared/store/configureStore';
 import routes from 'src/shared/routes';
 
 import renderHtml from 'src/server/renderHTML';
+
+function serverSideRender(res, renderProps, state) {
+  const store = configureStore(state);
+
+  const InitialView = (
+    <Provider store={ store }>
+      <RoutingContext { ...renderProps } />
+    </Provider>
+  );
+
+  fetchComponentData(
+    store.dispatch,
+    renderProps.components,
+    renderProps.params
+  ).then(() => {
+    const componentHTML = renderToString(InitialView);
+    const title = DocumentTitle.rewind();
+    const initialState = store.getState();
+    console.log(logColors.cSuccess('Server Side Rendered: OK'));
+    res.status(200).end(renderHtml(componentHTML, initialState, title));
+  })
+  .catch(error => {
+    console.log(logColors.cDanger('[110] ' + error.toString()));
+    res.end(renderHtml('', {}, 'Christian Le'));
+  });
+};
 
 const app = express();
 
@@ -51,6 +80,16 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/static', express.static(__dirname + '/../../dist'));
 }
 
+app.get('/api/blurbs', (req, res) => {
+  fs.readdir('src/static/blurbs', function(err, files) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(files);
+    }
+  });
+});
+
 app.get('*', (req, res) => {
   const location = createLocation(req.url);
 
@@ -64,28 +103,15 @@ app.get('*', (req, res) => {
       return res.status(404).end('404 Not Found');
     }
 
-    const store = configureStore({});
-
-    const InitialView = (
-      <Provider store={ store }>
-        <RoutingContext { ...renderProps } />
-      </Provider>
-    );
-
-    fetchComponentData(
-      store.dispatch,
-      renderProps.components,
-      renderProps.params
-    ).then(() => {
-      const componentHTML = renderToString(InitialView);
-      const title = DocumentTitle.rewind();
-      const initialState = store.getState();
-      console.log(logColors.cSuccess('Server Side Rendered: OK'));
-      res.status(200).end(renderHtml(componentHTML, initialState, title));
-    })
-    .catch(error => {
-      console.log(logColors.cDanger('[110] ' + error.toString()));
-      res.end(renderHtml('', {}, 'Christian Le'));
+    getBlurbs().then((response) => {
+      serverSideRender(res, renderProps, {
+        blurbs: response
+      });
+    }).catch((error) => {
+      console.log(logColors.cDanger(error));
+      serverSideRender(res, renderProps, {
+        blurbs: null
+      });
     });
   });
 });

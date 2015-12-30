@@ -14,7 +14,8 @@ module.exports = {
       path.resolve(__dirname, 'node_modules')
     ],
     alias: {
-      imgsRoot: path.resolve(__dirname, 'static/images')
+      imgsRoot: path.resolve(__dirname, 'static/images'),
+      blurbsRoot: path.resolve(__dirname, 'static/blurbs')
     }
   },
   module: {

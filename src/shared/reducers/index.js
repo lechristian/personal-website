@@ -6,10 +6,12 @@
 
 import { combineReducers } from 'redux';
 import { routerStateReducer } from 'redux-router';
-// import undoable from 'redux-undo';
+
+import blurbsReducer from 'src/shared/reducers/blurbs';
 
 const rootReducer = combineReducers({
-  router: routerStateReducer
+  router: routerStateReducer,
+  blurbs: blurbsReducer
 });
 
 export default rootReducer;

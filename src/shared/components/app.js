@@ -4,14 +4,12 @@
  * React/Redux App
  * ========================================================================== */
 
-// import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 // import { bindActionCreators } from 'redux';
-// import { Link } from 'react-router';
-// import classNames from 'classnames';
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 import Home from 'src/shared/components/home';
+// import Terminal from 'src/shared/components/terminal'
 
 class App extends Component {
   constructor(props) {
@@ -19,13 +17,13 @@ class App extends Component {
   }
 
   render() {
-    const { } = this.props;
+    const { blurbs } = this.props;
+    console.log(blurbs);
 
     return (
       <DocumentTitle title="Christian Le">
         <div className="container">
           <div className="nav">
-
           </div>
           <div className="content">
             { !this.props.children && <Home /> }
@@ -38,12 +36,14 @@ class App extends Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.element
+  children: PropTypes.element,
+  blurbs: PropTypes.array
 };
 
 function mapStateToProps(state) {
-  state.toString();
-  return {};
+  return {
+    blurbs: state.blurbs
+  };
 }
 
 function mapDispatchToProps(dispatch) {
