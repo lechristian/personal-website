@@ -1,3 +1,9 @@
+/* ==========================================================================
+ * ./webpack.config.dev.js
+ *
+ * Webpack config for Development
+ * ========================================================================== */
+
 const webpack = require('webpack');
 
 module.exports = {

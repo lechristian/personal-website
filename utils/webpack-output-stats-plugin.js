@@ -1,6 +1,11 @@
+/* ==========================================================================
+ * ./utils/webpack-output-stats-plugin.js
+ *
+ * Output Webpack Stats Webpack Plugin
+ * ========================================================================== */
+
 'use strict';
 
-const fs = require('fs-extra');
 const path = require('path');
 const outputWebpackStats = require('./outputWebpackStats');
 

@@ -10,9 +10,8 @@ const _ = require('lodash');
 const path = require('path');
 const fs = require('fs-extra-promise');
 const Promise = require('bluebird');
+const logger = require('tracer').colorConsole();
 const lineReader = require('line-reader');
-
-const logColors = require('config/colors');
 
 const blurbsPath = '../static/blurbs/';
 const outputDir = path.resolve(__dirname, blurbsPath, 'index.json');
@@ -36,14 +35,14 @@ function extractSummary(rawSummaries) {
   return summaries;
 };
 
-function handleError(err) {
-  console.log(logColors.cWarning(JSON.stringify(err, null, 2)));
+function handleError(err, callback) {
+  logger.error(JSON.stringify(err, null, 2));
 
   fs.outputFileAsync(outputDir, '{}').then(function() {
-    console.log(logColors.cWarning('--> Wrote empty file'));
+    logger.warn('--> Wrote empty file');
     callback();
   }).catch(function(err) {
-    console.log(logColors.cDanger('--> Wrote no file'));
+    logger.error('--> Wrote no file');
     callback();
   });
 }
@@ -85,14 +84,14 @@ module.exports = function generateBlurbsSummary(callback) {
 
       fs.outputFileAsync(outputDir, JSON.stringify(summaries, null, 2))
         .then(function() {
-          console.log(logColors.cSuccess('==> Wrote Blurbs Summaries'));
+          logger.info('==> Wrote Blurbs Summaries');
           callback();
         })
         .catch(function(err) {
-          handleError(err);
+          handleError(err, callback);
         });
     });
   }).catch(function(err) {
-    handleError(err);
+    handleError(err, callback);
   });
 };

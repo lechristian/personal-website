@@ -7,8 +7,9 @@
 
 'use strict';
 
-const fs = require('fs-extra');
+const fs = require('fs-extra-promise');
 const path = require('path');
+const logger = require('tracer').colorConsole();
 
 const statsFileName = 'webpack-stats.json';
 const statsPath = path.resolve(__dirname, '../', statsFileName);
@@ -48,5 +49,5 @@ module.exports = function(stats, publicPath) {
   };
 
   fs.outputFileSync(statsPath, JSON.stringify(content));
-  console.log('==> File has been written: ' + statsFileName);
+  logger.info('==> File has been written: ' + statsFileName);
 };

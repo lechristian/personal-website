@@ -5,7 +5,7 @@
  * ========================================================================== */
 
 import _ from 'lodash';
-import fs from 'fs-extra';
+import fs from 'fs-extra-promise';
 import path from 'path';
 
 export default function renderHTML(html, initialState, title) {

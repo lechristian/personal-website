@@ -1,3 +1,9 @@
+/* ==========================================================================
+ * ./webpack.config.prod.js
+ *
+ * Webpack config for Production
+ * ========================================================================== */
+
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackOutputStatsPlugin = require('./utils/webpack-output-stats-plugin');

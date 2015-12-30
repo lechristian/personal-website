@@ -1,3 +1,9 @@
+/* ==========================================================================
+ * ./webpack.config.base.js
+ *
+ * Base/Shared Webpack config
+ * ========================================================================== */
+
 const path = require('path');
 const webpack = require('webpack');
 const cssnano = require('cssnano');

@@ -5,7 +5,6 @@
  * ========================================================================== */
 
 import React, { Component, PropTypes } from 'react';
-// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 import Home from 'src/shared/components/home';

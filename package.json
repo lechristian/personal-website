@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "description": "http://christianle.com",
   "scripts": {
-    "slate": "rm -rf node_modules && npm run clean && npm install",
-    "clean": "rm -rf dist",
+    "slate": "rm -rf node_modules && rm -f ./webpack-stats.json && npm run clean && npm install",
+    "clean": "rm -rf dist && rm -f ./static/blurbs/index.json",
     "start": "NODE_ENV=development node --harmony index.js --progress --colors --profile",
     "start:prod": "NODE_ENV=production node --harmony index.js --progress --colors --profile",
     "build": "npm run clean && NODE_ENV=production ./node_modules/.bin/webpack -p --progress --colors --profile"
@@ -23,7 +23,6 @@
     "babel-runtime": "^6.3.13",
     "bluebird": "^3.1.1",
     "express": "^4.13.3",
-    "fs-extra": "^0.26.3",
     "fs-extra-promise": "^0.3.1",
     "history": "^1.17.0",
     "line-reader": "^0.3.0",
@@ -32,14 +31,12 @@
     "react": "^0.14.3",
     "react-document-title": "^2.0.1",
     "react-dom": "^0.14.3",
-    "react-helmet": "^2.2.0",
     "react-markdown": "^1.2.0",
     "react-redux": "^4.0.5",
     "react-router": "^1.0.3",
     "redux": "^3.0.5",
     "redux-router": "^1.0.0-beta5",
-    "redux-thunk": "^1.0.2",
-    "redux-undo": "^0.6.0"
+    "redux-thunk": "^1.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0-beta6",
@@ -50,7 +47,6 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.0.0",
     "babel-preset-stage-1": "^6.3.13",
-    "chalk": "^1.1.1",
     "css-loader": "^0.23.1",
     "cssnano": "^3.4.0",
     "eslint": "^1.10.3",
@@ -72,6 +68,7 @@
     "redux-logger": "^2.3.1",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
+    "tracer": "^0.8.2",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",

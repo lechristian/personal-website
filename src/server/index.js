@@ -5,10 +5,9 @@
  * ========================================================================== */
 
 import express from 'express';
-import fs from 'fs-extra';
+import fs from 'fs-extra-promise';
+import tracer from 'tracer';
 import config from 'config';
-
-import logColors from 'config/colors';
 
 import webpack from 'webpack';
 import webpackConfig from 'webpack.config';
@@ -17,47 +16,14 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import outputWebpackStats from 'utils/outputWebpackStats';
 
-import React from 'react';
-import { renderToString } from 'react-dom/server';
 import createLocation from 'history/lib/createLocation';
-import { RoutingContext, match } from 'react-router';
-import { Provider } from 'react-redux';
-import DocumentTitle from 'react-document-title';
-import { fetchComponentData } from 'src/shared/api/utils/fetchComponentData';
+import { match } from 'react-router';
+import bootstrapApp from 'src/server/bootstrapApp';
 
 import { getBlurbs } from 'src/shared/api/blurbs';
-
-import configureStore from 'src/shared/store/configureStore';
 import routes from 'src/shared/routes';
 
-import renderHtml from 'src/server/renderHTML';
-
-function serverSideRender(res, renderProps, state) {
-  const store = configureStore(state);
-
-  const InitialView = (
-    <Provider store={ store }>
-      <RoutingContext { ...renderProps } />
-    </Provider>
-  );
-
-  fetchComponentData(
-    store.dispatch,
-    renderProps.components,
-    renderProps.params
-  ).then(() => {
-    const componentHTML = renderToString(InitialView);
-    const title = DocumentTitle.rewind();
-    const initialState = store.getState();
-    console.log(logColors.cSuccess('Server Side Rendered: OK'));
-    res.status(200).end(renderHtml(componentHTML, initialState, title));
-  })
-  .catch(error => {
-    console.log(logColors.cDanger('[110] ' + error.toString()));
-    res.end(renderHtml('', {}, 'Christian Le'));
-  });
-};
-
+const logger = tracer.colorConsole();
 const app = express();
 
 delete process.env.BROWSER;
@@ -89,7 +55,7 @@ app.get('*', (req, res) => {
 
   match({ routes, location }, (err, redirectLocation, renderProps) => {
     if (err) {
-      console.log(logColors.cDanger('[74] ' + err.toString()));
+      logger.error(err.toString());
       return res.status(500).end('Internal server error');
     }
 
@@ -98,12 +64,12 @@ app.get('*', (req, res) => {
     }
 
     getBlurbs().then((response) => {
-      serverSideRender(res, renderProps, {
+      bootstrapApp(res, renderProps, {
         blurbs: response
       });
     }).catch((error) => {
-      console.log(logColors.cDanger(error));
-      serverSideRender(res, renderProps, {
+      logger.error(error);
+      bootstrapApp(res, renderProps, {
         blurbs: null
       });
     });
@@ -113,5 +79,5 @@ app.get('*', (req, res) => {
 const server = app.listen(config.port, function () {
   const port = server.address().port;
   const notice = `App listening at port: ${ port }`;
-  console.log(logColors.cSuccess(notice));
+  logger.info(notice);
 });

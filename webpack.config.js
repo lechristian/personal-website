@@ -11,8 +11,8 @@ const path = require('path');
 const webpack = require('webpack');
 const cssnano = require('cssnano');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const logger = require('tracer').colorConsole();
 const WebpackOutputStatsPlugin = require('./utils/webpack-output-stats-plugin');
-const logColors = require('./config/colors');
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -35,12 +35,10 @@ _.forEach(webpackAdd.module, function(value, key) {
 if (isDev) {
   const loaders = webpackConfig.module.loaders.map(function (loader) {
     if (/babel/.test(loader.loader)) {
-      console.log(logColors.cWarning('Applying HMR'));
+      logger.info('Applying HMR');
 
       if (loader.query.env.development.plugins[0][0] !== 'react-transform') {
-        console.log(
-          logColors.cError('==> Error: react-transform must be first plugin')
-        );
+        logger.error('==> Error: react-transform must be first plugin');
         return loader;
       }
 
