@@ -12,12 +12,12 @@
 
 html {
   position: relative;
-  height: 100%;
+  font-size: $base-font-size;
+  font-family: $font-family;
 }
 
 body {
   position: relative;
-  height: 100%;
 }
 
 input, textarea {

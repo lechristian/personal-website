@@ -5,6 +5,7 @@
  * ========================================================================== */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import requireImage from 'utils/requireImage';
 
 class Home extends Component {
@@ -13,6 +14,65 @@ class Home extends Component {
       <div className="page page--home">
         <div className="logo">
           <img src={ requireImage('logo.png').toString() } />
+        </div>
+        <div className="margin-bottom-4">
+          <p className="h2 margin-bottom-4">
+            Hi there! I'm <b>Christian Le</b>,
+          </p>
+          <p className="h3 light lineheight-m">
+            a <b>
+              <a href="https://goo.gl/XA1hJV" target="_blank">
+                software engineer
+              </a>
+            </b>
+            &nbsp;and <b>
+              <a href="https://goo.gl/aBIyev" target="_blank">
+                photographer
+              </a>
+            </b>
+            &nbsp;born and raised in <b>
+              <a href="https://goo.gl/Jpbpks" target="_blank">
+                Southern California
+              </a>
+            </b> currently residing in the <b>
+              <a href="https://goo.gl/knXZm4" target="_blank">Bay Area.</a>
+            </b>
+          </p>
+        </div>
+        <div className="margin-bottom-4">
+          <p className="h4 light margin-bottom-2">
+            Welcome to my website, a place that holds a small collection of my
+            <b>
+              <Link to={'/photos'}>
+                &nbsp;photos
+              </Link>
+            </b>, a place where I can host my
+            <b>
+              <Link to={'/blurbs'}>
+                &nbsp;rants and blurbs
+              </Link>
+            </b> about random things, a place that I use to practice my web
+            development, and at the end of the day, a place about me.
+            So a little about me...
+          </p>
+          <p className="h4 light margin-bottom-2">
+            I spend my free time flying quadcopters, drinking boba/tea,
+            catching up on TV shows, attemping to go on photo adventures, and
+            contemptating when I'll next pick up my tennis racket.
+          </p>
+        </div>
+        <div className="margin-bottom-4">
+          <p className="h4 light">
+            I'm a co-founder at <b>
+              <a href="https://www.outcomes.com" target="_blank">
+                Outcomes.com
+              </a>
+            </b> with previous experience at SF based start up, <b>
+              <a href="https://thestorefront.com" target="_blank">Storefront</a>
+            </b>, and Pleasanton based, <b>
+              <a href="https://workday.com" target="_blank">Workday</a>
+            </b>.
+          </p>
         </div>
       </div>
     );

@@ -1,0 +1,7 @@
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}
+
+@function remToPx($rem) {
+  @return parseInt($rem * $base-font-size);
+}
