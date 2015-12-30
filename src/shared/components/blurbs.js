@@ -11,7 +11,6 @@ class Blurbs extends Component {
   render() {
     return (
       <div className="page page--blurbs">
-        Blurbs
       </div>
     );
   }

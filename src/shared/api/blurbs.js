@@ -9,10 +9,8 @@ export function getBlurbs() {
     const axios = require('axios');
     return axios.get('/api/blurbs');
   } else {
-    const path = require('path');
-    const fs = require('fs-extra-promise');
-
-    const blurbsDir = path.resolve(__dirname, '../../../static/blurbs');
-    return fs.readdirAsync(blurbsDir);
+    return new Promise((resolve) => {
+      resolve(require('../../../static/blurbs/index.json'));
+    });
   }
 }

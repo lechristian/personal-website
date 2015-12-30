@@ -18,4 +18,6 @@ try {
 }
 
 require('babel-core/register')(config);
-require('./src/server');
+require('./utils/generateBlurbsSummary')(function() {
+  require('./src/server');
+});

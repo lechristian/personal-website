@@ -81,13 +81,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.get('/api/blurbs', (req, res) => {
-  fs.readdir('src/static/blurbs', function(err, files) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.json(files);
-    }
-  });
+  res.json(require('static/blurbs/index.json'));
 });
 
 app.get('*', (req, res) => {
