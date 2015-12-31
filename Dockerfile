@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 
 RUN npm run slate
 RUN npm run build
+RUN npm run build
 
 EXPOSE 3000
 
