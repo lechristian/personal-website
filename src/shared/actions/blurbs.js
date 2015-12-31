@@ -6,7 +6,7 @@
 
 export const GET_BLURBS = 'GET_BLURBS';
 
-export function getBlurbs(data) {
+export function fetchBlurbs(data) {
   return {
     type: GET_BLURBS,
     payload: data

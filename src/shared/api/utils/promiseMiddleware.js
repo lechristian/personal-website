@@ -12,7 +12,7 @@ export default function promiseMiddleware() {
       return next(action);
     }
 
-    const SUCCESS = `${ type }_SUCCESS`;
+    const SUCCESS = type;
     const REQUEST = `${ type }_REQUEST`;
     const FAILURE = `${ type }_FAILURE`;
 
@@ -21,10 +21,10 @@ export default function promiseMiddleware() {
       type: REQUEST
     });
 
-    return promise.then(req => {
+    return promise.then(res => {
       next({
         ...rest,
-        req, type: SUCCESS
+        res, type: SUCCESS
       });
 
       return true;

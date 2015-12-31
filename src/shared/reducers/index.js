@@ -8,10 +8,12 @@ import { combineReducers } from 'redux';
 import { routerStateReducer } from 'redux-router';
 
 import blurbsReducer from 'src/shared/reducers/blurbs';
+import blurbReducer from 'src/shared/reducers/blurb';
 
 const rootReducer = combineReducers({
   router: routerStateReducer,
-  blurbs: blurbsReducer
+  blurbs: blurbsReducer,
+  blurb: blurbReducer
 });
 
 export default rootReducer;

@@ -9,6 +9,7 @@ export function getBlurbs() {
     const axios = require('axios');
     return axios.get('/api/blurbs');
   } else {
+    const Promise = require('bluebird');
     return new Promise((resolve) => {
       resolve(require('../../../static/blurbs/index.json'));
     });

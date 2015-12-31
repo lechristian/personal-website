@@ -8,6 +8,7 @@ import express from 'express';
 import fs from 'fs-extra-promise';
 import tracer from 'tracer';
 import config from 'config';
+import path from 'path';
 
 import webpack from 'webpack';
 import webpackConfig from 'webpack.config';
@@ -50,6 +51,23 @@ app.get('/api/blurbs', (req, res) => {
   res.json(require('static/blurbs/index.json'));
 });
 
+app.get('/api/blurb/:fileName', (req, res) => {
+  const blurbsPath = '../../static/blurbs/';
+  const filePath = path.resolve(__dirname, blurbsPath, req.params.fileName);
+  fs.readFileAsync(filePath, 'utf8')
+    .then(function(str) {
+      res.json({
+        blurb: str
+      })
+    })
+    .catch(function(err) {
+      logger.error(err);
+      res.json({
+        blurb: null
+      });
+    });
+});
+
 app.get('*', (req, res) => {
   const location = createLocation(req.url);
 
@@ -70,7 +88,7 @@ app.get('*', (req, res) => {
     }).catch((error) => {
       logger.error(error);
       bootstrapApp(res, renderProps, {
-        blurbs: null
+        blurbs: []
       });
     });
   });
