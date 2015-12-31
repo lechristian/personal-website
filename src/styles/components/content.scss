@@ -12,4 +12,20 @@
     left: $size-terminal-pane;
     width: $size-content-pane;
   }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+
+    .inline {
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    @media screen and (min-width: $break-point-terminal) {
+      display: block;
+    }
+  }
 }

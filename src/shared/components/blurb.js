@@ -7,6 +7,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import ReactMarkdown from 'react-markdown';
 import * as BlurbActions from 'src/shared/actions/blurb';
@@ -43,6 +44,11 @@ class Blurb extends Component {
       <DocumentTitle title={`${ title } | Christian Le`}>
         <div className="page page--blurb">
           <ReactMarkdown source={ markdown } />
+          <div className="nav-links">
+            <Link to={'/blurbs'} className="inline">Blurbs</Link>
+            <div className="inline">|</div>
+            <Link to={'/'} className="inline">Home</Link>
+          </div>
         </div>
       </DocumentTitle>
     );

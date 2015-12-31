@@ -1,21 +1,44 @@
 .page--blurb {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 4% 8% 0;
+
+  h1 {
+    @extend .center;
+    @extend .bold;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    border-bottom: 2px dotted $grey;
+
+    @media screen and (min-width: 780px) {
+      max-width: 90%;
+    }
+  }
 
   h2 {
-    margin-top: 12px;
-    margin-bottom: 20px;
+    @extend .center;
+    margin: 50px 0 30px;
   }
 
   h3 {
-    margin-top: 8px;
-    margin-bottom: 12px;
+    @extend .center;
+    @extend .bold;
+    text-transform: uppercase;
+    margin: 50px 0 18px;
+    letter-spacing: 0.25rem;
+  }
+
+  h4 {
+    margin: 50px 0 10px;
+    padding: 0 0 10px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25rem;
+    border-bottom: 1px dashed $m-grey;
   }
 
   p {
     margin-top: 2px;
     margin-bottom: 8px;
+    text-align: justify;
   }
 
   pre {
