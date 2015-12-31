@@ -56,7 +56,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use('/static', express.static(__dirname + '/../../dist'));
 }
 
-app.use('/favicon', express.static(__dirname + '/../../static/images/favicon'));
+app.use('/favicon', express.static(__dirname + '/../../favicon'));
 
 app.get('/api/blurbs', (req, res) => {
   res.json(require('static/blurbs/index.json'));
