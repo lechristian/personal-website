@@ -1,4 +1,4 @@
-# http://christianle.com: A New Purpose
+# Christianle.com: A New Purpose
 <!---
 Why I rebuilt my website, again, and the reasoning behind my technology choices.
 -->
