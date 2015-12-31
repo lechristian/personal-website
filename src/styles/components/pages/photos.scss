@@ -1,0 +1,9 @@
+.page--photo {
+  max-width: 720px;
+
+  .photo--wrapper {
+    @include image-wrapper();
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
