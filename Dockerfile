@@ -8,8 +8,7 @@ WORKDIR /usr/src/app
 
 RUN npm run slate
 RUN npm run build
-RUN npm run build
 
 EXPOSE 3000
 
-CMD [ "npm", "start:prod" ]
+CMD [ "npm", "start" ]
