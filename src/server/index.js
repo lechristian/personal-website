@@ -4,6 +4,7 @@
  * Server
  * ========================================================================== */
 
+import _ from 'lodash';
 import express from 'express';
 import fs from 'fs-extra-promise';
 import tracer from 'tracer';
@@ -35,11 +36,19 @@ if (process.env.NODE_ENV !== 'production') {
   });
 
   app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
+    noInfo: false,
     quiet: false,
     publicPath: webpackConfig.output.publicPath,
     stats: {
-      colors: true
+      colors: true,
+      hash: true,
+      version: true,
+      timings: true,
+      assets: false,
+      chunks: true,
+      chunkModules: false,
+      modules: false,
+      cached: false
     }
   }));
   app.use(webpackHotMiddleware(compiler));

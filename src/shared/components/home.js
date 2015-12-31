@@ -37,9 +37,9 @@ class Home extends Component {
             </b> currently residing in the <b>
               <a href="https://goo.gl/knXZm4" target="_blank">Bay Area</a>
             </b> as a recent graduate from <b>
-              <a href="http://www.berkeley.edu/">UC Berkeley</a>
+              <a href="http://www.berkeley.edu/" target="_blank">UC Berkeley</a>
             </b>. I co-founded and am currently working at <b>
-              <a href="https://outcomes.com">Outcomes.com</a>
+              <a href="https://outcomes.com" target="_blank">Outcomes.com</a>
             </b>.
           </p>
         </div>
