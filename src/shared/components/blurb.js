@@ -27,7 +27,7 @@ class Blurb extends Component {
   render() {
     const { markdown } = this.props;
 
-    if (markdown.match(/^\<Not Found\>$/)) {
+    if (markdown && markdown.match(/^\<Not Found\>$/)) {
       return <Error404 />;
     } else if (!markdown) {
       return (

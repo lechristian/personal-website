@@ -6,7 +6,6 @@
 
 import _ from 'lodash';
 import express from 'express';
-import fs from 'fs-extra-promise';
 import tracer from 'tracer';
 import config from 'config';
 import path from 'path';
@@ -17,6 +16,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import outputWebpackStats from 'utils/outputWebpackStats';
+import colorifyCode from 'utils/colorifyCode';
 
 import createLocation from 'history/lib/createLocation';
 import { match } from 'react-router';
@@ -61,20 +61,16 @@ app.get('/api/blurbs', (req, res) => {
 });
 
 app.get('/api/blurb/:fileName', (req, res) => {
-  const blurbsPath = '../../static/blurbs/';
-  const filePath = path.resolve(__dirname, blurbsPath, req.params.fileName);
-  fs.readFileAsync(filePath, 'utf8')
-    .then(function(str) {
-      res.json({
-        blurb: str
-      })
+  colorifyCode(req.params.fileName).then(function(md) {
+    res.json({
+      blurb: md
     })
-    .catch(function(err) {
-      logger.error(err);
-      res.json({
-        blurb: '<Not Found>'
-      });
-    });
+  }).catch(function(err) {
+    logger.error(err);
+    res.json({
+      blurb: '<Not Found>'
+    })
+  });
 });
 
 app.get('*', (req, res) => {
