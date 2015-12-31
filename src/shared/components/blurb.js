@@ -27,12 +27,20 @@ class Blurb extends Component {
   render() {
     const { markdown } = this.props;
 
-    if (!markdown) {
+    if (markdown.match(/^\<Not Found\>$/)) {
       return <Error404 />;
+    } else if (!markdown) {
+      return (
+        <DocumentTitle title="Blurb | Christian Le">
+          <div className="page page--blurb"></div>
+        </DocumentTitle>
+      );
     }
 
+    const title = markdown.split('\n', 2)[0].substring(2);
+
     return (
-      <DocumentTitle title="Blurb | Christian Le">
+      <DocumentTitle title={`${ title } | Christian Le`}>
         <div className="page page--blurb">
           <ReactMarkdown source={ markdown } />
         </div>

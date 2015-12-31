@@ -72,7 +72,7 @@ app.get('/api/blurb/:fileName', (req, res) => {
     .catch(function(err) {
       logger.error(err);
       res.json({
-        blurb: null
+        blurb: '<Not Found>'
       });
     });
 });
