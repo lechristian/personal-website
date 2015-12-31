@@ -39,7 +39,9 @@ class Home extends Component {
             </b> as a recent graduate from <b>
               <a href="http://www.berkeley.edu/" target="_blank">UC Berkeley</a>
             </b>. I co-founded and am currently working at <b>
-              <a href="https://outcomes.com" target="_blank">Outcomes.com</a>
+              <a href="https://www.outcomes.com" target="_blank">
+                Outcomes.com
+              </a>
             </b>.
           </p>
         </div>
