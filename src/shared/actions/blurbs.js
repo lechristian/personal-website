@@ -4,11 +4,15 @@
  * Blurbs Actions
  * ========================================================================== */
 
+import { getBlurbs } from 'src/shared/api/blurbs';
+
 export const GET_BLURBS = 'GET_BLURBS';
 
-export function fetchBlurbs(data) {
+export function fetchBlurbs() {
+  const promise = getBlurbs();
+
   return {
     type: GET_BLURBS,
-    payload: data
+    promise
   };
 }

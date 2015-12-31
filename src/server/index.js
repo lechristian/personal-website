@@ -81,16 +81,7 @@ app.get('*', (req, res) => {
       return res.status(404).end('404 Not Found');
     }
 
-    getBlurbs().then((response) => {
-      bootstrapApp(res, renderProps, {
-        blurbs: response
-      });
-    }).catch((error) => {
-      logger.error(error);
-      bootstrapApp(res, renderProps, {
-        blurbs: []
-      });
-    });
+    bootstrapApp(res, renderProps, {});
   });
 });
 

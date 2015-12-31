@@ -5,12 +5,14 @@
  * ========================================================================== */
 
 import { GET_BLURBS } from 'src/shared/actions/blurbs';
-import objectAssign from 'object-assign';
 
-export default function blurbs(state = {}, action) {
+export default function blurbs(state = [], action) {
   switch (action.type) {
     case GET_BLURBS:
-      return objectAssign({}, state);
+      if (action.res.data) {
+        return action.res.data;
+      }
+      return action.res;
     default:
       return state;
   }

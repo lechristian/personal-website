@@ -6,8 +6,10 @@
 
 import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import * as BlurbsActions from 'src/shared/actions/blurbs';
 import DocumentTitle from 'react-document-title';
 
 const mdExtRegex = /\.md$/;
@@ -18,9 +20,15 @@ class Blurbs extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const { blurbs } = this.props;
+    if (blurbs.length <= 0) {
+      this.props.fetchBlurbs();
+    }
+  }
+
   render() {
     const { blurbs } = this.props;
-    console.log(blurbs);
 
     const rows = [];
     _.forEach(blurbs, (blurb) => {
@@ -57,8 +65,12 @@ class Blurbs extends Component {
 
 Blurbs.propTypes = {
   blurbs: PropTypes.array,
-  children: PropTypes.element
+  fetchBlurbs: PropTypes.func
 };
+
+Blurbs.need = [
+  BlurbsActions.fetchBlurbs
+];
 
 function mapStateToProps(state) {
   return {
@@ -66,4 +78,8 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {})(Blurbs);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(BlurbsActions, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Blurbs);

@@ -24,14 +24,6 @@ class Blurb extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const next = nextProps.fileName;
-    const curr = this.props.fileName;
-    if (next.blurbId !== curr.blurbId) {
-      this.props.fetchBlurb(next);
-    }
-  }
-
   render() {
     const { markdown } = this.props;
 

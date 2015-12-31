@@ -16,9 +16,6 @@ class App extends Component {
   }
 
   render() {
-    const { blurbs } = this.props;
-    console.log(blurbs);
-
     return (
       <DocumentTitle title="Christian Le">
         <div className="container">
