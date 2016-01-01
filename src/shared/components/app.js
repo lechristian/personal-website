@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
 
+import Navigation from 'src/shared/components/navigation';
 import Home from 'src/shared/components/home';
 
 import * as BlurbsActions from 'src/shared/actions/blurbs';
@@ -30,6 +31,7 @@ class App extends Component {
       <DocumentTitle title="Christian Le">
         <div className="container">
           <div className="nav">
+            <Navigation />
           </div>
           <div className="content">
             { !this.props.children && <Home /> }

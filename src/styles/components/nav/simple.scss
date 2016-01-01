@@ -1,0 +1,36 @@
+.simple-nav {
+  padding: 15%;
+  width: 100%;
+
+  ul.outer {
+    list-style: none;
+
+    li {
+      @extend .h4;
+      width: 100%;
+      margin-bottom: 3rem;
+      color: $l-grey;
+      text-transform: uppercase;
+
+      a {
+        letter-spacing: 0.25rem;
+      }
+
+      ul.inner {
+        margin-top: 0.75rem;
+        margin-left: 1.2rem;
+
+        li {
+          @include font-size(1.2);
+          font-weight: 300;
+          color: $m-grey;
+          text-transform: none;
+
+          a {
+            letter-spacing: 0;
+          }
+        }
+      }
+    }
+  }
+}
