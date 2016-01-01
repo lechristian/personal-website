@@ -33,6 +33,8 @@ export default function blurb(state = defaultBlurbState, action) {
         fileName
       };
 
+      newState.currentBlurb = action.fileName;
+
       return newState;
     default:
       return state;

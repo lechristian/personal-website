@@ -4,6 +4,7 @@
  * Specific Blurb Page
  * ========================================================================== */
 
+import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -68,21 +69,34 @@ Blurb.need = [
 
 function mapStateToProps(state) {
   const { blurb, router } = state;
-  const {
-    isFetching,
-    markdown,
-    fileName
-  } = blurb.cache[router.params.blurbId] || {
-    isFetching: true,
-    markdown: null,
-    fileName: router.params
-  };
-
-  return {
-    markdown,
-    isFetching,
-    fileName
-  };
+  if (_.size(blurb.cache) > 0 && blurb.currentBlurb) {
+    const cacheHit = blurb.cache[blurb.currentBlurb];
+    console.log(cacheHit);
+    return {
+      isFetching: cacheHit.isFetching,
+      markdown: cacheHit.markdown,
+      fileName: cacheHit.params
+    };
+  } else if (blurb && router && blurb.cache[router.params.blurbId]) {
+    const cacheHit = blurb.cache[router.params.blurbId];
+    return {
+      isFetching: cacheHit.isFetching,
+      markdown: cacheHit.markdown,
+      fileName: cacheHit.params
+    };
+  } else if (blurb && router && !blurb.cache[router.params.blurbId]) {
+    return {
+      isFetching: true,
+      markdown: null,
+      fileName: router.params
+    };
+  } else {
+    return {
+      isFetching: false,
+      markdown: null,
+      fileName: null
+    };
+  }
 }
 
 function mapDispatchToProps(dispatch) {

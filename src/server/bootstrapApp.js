@@ -34,8 +34,9 @@ export default function bootstrapApp(res, renderProps, state) {
     const componentHTML = renderToString(InitialView);
     const title = DocumentTitle.rewind();
     const initialState = store.getState();
-    logger.info('Server Side Rendered: OK');
-    res.status(200).end(renderHtml(componentHTML, initialState, title));
+
+    const viewRendered = renderHtml(componentHTML, initialState, title);
+    res.status(200).end(viewRendered);
   })
   .catch(error => {
     logger.error(error.toString());
