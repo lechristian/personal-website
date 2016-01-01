@@ -57,6 +57,11 @@ class Blurbs extends Component {
           <div className="rows">
             { rows }
           </div>
+          <div className="nav-links">
+            <Link to={'/photos'} className="inline">Photos</Link>
+            <div className="inline">|</div>
+            <Link to={'/'} className="inline">Home</Link>
+          </div>
         </div>
       </DocumentTitle>
     );

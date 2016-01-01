@@ -5,6 +5,7 @@
  * ========================================================================== */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import requireImage from 'utils/requireImage';
 
 class Photos extends Component {
@@ -24,6 +25,11 @@ class Photos extends Component {
           Photos
         </h1>
         { photos }
+        <div className="nav-links">
+          <Link to={'/blurbs'} className="inline">Blurbs</Link>
+          <div className="inline">|</div>
+          <Link to={'/'} className="inline">Home</Link>
+        </div>
       </div>
     );
   }
