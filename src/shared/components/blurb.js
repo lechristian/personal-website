@@ -71,7 +71,6 @@ function mapStateToProps(state) {
   const { blurb, router } = state;
   if (_.size(blurb.cache) > 0 && blurb.currentBlurb) {
     const cacheHit = blurb.cache[blurb.currentBlurb];
-    console.log(cacheHit);
     return {
       isFetching: cacheHit.isFetching,
       markdown: cacheHit.markdown,

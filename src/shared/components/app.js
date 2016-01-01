@@ -6,13 +6,22 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import DocumentTitle from 'react-document-title';
+
 import Home from 'src/shared/components/home';
-// import Terminal from 'src/shared/components/terminal'
+import * as BlurbsActions from 'src/shared/actions/blurbs';
 
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const { blurbs } = this.props;
+    if (blurbs.length <= 0) {
+      this.props.fetchBlurbs();
+    }
   }
 
   render() {
@@ -33,8 +42,13 @@ class App extends Component {
 
 App.propTypes = {
   children: PropTypes.element,
-  blurbs: PropTypes.array
+  blurbs: PropTypes.array,
+  fetchBlurbs: PropTypes.func
 };
+
+App.need = [
+  BlurbsActions.fetchBlurbs
+];
 
 function mapStateToProps(state) {
   return {
@@ -43,8 +57,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  dispatch.toString();
-  return {};
+  return bindActionCreators(BlurbsActions, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

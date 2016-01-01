@@ -4,13 +4,11 @@
  * Blurbs List Page
  * ========================================================================== */
 
-import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import * as BlurbsActions from 'src/shared/actions/blurbs';
 import DocumentTitle from 'react-document-title';
+import _ from 'lodash';
 
 const mdExtRegex = /\.md$/;
 const preNumRegex = /^[0-9]*/;
@@ -18,13 +16,6 @@ const preNumRegex = /^[0-9]*/;
 class Blurbs extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    const { blurbs } = this.props;
-    if (blurbs.length <= 0) {
-      this.props.fetchBlurbs();
-    }
   }
 
   render() {
@@ -69,13 +60,8 @@ class Blurbs extends Component {
 }
 
 Blurbs.propTypes = {
-  blurbs: PropTypes.array,
-  fetchBlurbs: PropTypes.func
+  blurbs: PropTypes.array
 };
-
-Blurbs.need = [
-  BlurbsActions.fetchBlurbs
-];
 
 function mapStateToProps(state) {
   return {
@@ -83,8 +69,8 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(BlurbsActions, dispatch);
+function mapDispatchToProps() {
+  return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blurbs);
