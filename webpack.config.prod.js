@@ -37,7 +37,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        BROWSER: JSON.stringify(true)
+        BROWSER: JSON.stringify(true),
+        GA_ID: JSON.stringify(process.env.GA_ID || '')
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

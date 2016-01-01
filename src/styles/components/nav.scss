@@ -27,6 +27,7 @@
     height: 100%;
 
     .launcher-container {
+      display: none;
       position: absolute;
       bottom: 0;
       height: 60px;
@@ -39,6 +40,10 @@
       cursor: pointer;
       user-select: none;
       z-index: 3;
+
+      @media screen and (min-width: $break-point-terminal) {
+        display: block;
+      }
 
       .launcher-icon {
         bottom: 15px;

@@ -8,6 +8,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
+import GoogleAnalytics from 'react-g-analytics';
 
 import Navigation from 'src/shared/components/navigation';
 import Home from 'src/shared/components/home';
@@ -27,6 +28,10 @@ class App extends Component {
   }
 
   render() {
+    if (process.env.BROWSER) {
+      console.log(process.env.GA_ID);
+    }
+
     return (
       <DocumentTitle title="Christian Le">
         <div className="container">
@@ -37,6 +42,7 @@ class App extends Component {
             { !this.props.children && <Home /> }
             { this.props.children }
           </div>
+          <GoogleAnalytics id={ process.env.GA_ID } />
         </div>
       </DocumentTitle>
     );

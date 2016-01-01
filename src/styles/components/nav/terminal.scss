@@ -1,4 +1,5 @@
 .terminal-container {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -6,8 +7,12 @@
   width: 100%;
   z-index: 1;
 
-  &.nav-top {
-    z-index: 2;
+  @media screen and (min-width: $break-point-terminal) {
+    display: block;
+
+    &.nav-top {
+      z-index: 2;
+    }
   }
 
   .terminal-enter {

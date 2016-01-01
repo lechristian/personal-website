@@ -14,7 +14,7 @@ class SimpleNavigation extends Component {
   }
 
   render() {
-    const { blurbs } = this.props;
+    const { blurbs, className } = this.props;
 
     const blurbLinks = _.map(blurbs, (blurb, index) => {
       const fileName = blurb.file.replace(/\.md$/, '');
@@ -28,7 +28,7 @@ class SimpleNavigation extends Component {
     });
 
     return (
-      <div className={ `simple-nav ${ this.props.className }` }>
+      <div className={ `simple-nav ${ className }` }>
         <ul className="outer">
           <li>
             <Link to="/">Home</Link>

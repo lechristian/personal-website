@@ -31,18 +31,10 @@ class Navigation extends Component {
 
     return (
       <div className="navs-container">
-        <ReactCSSTransitionGroup
-          transitionName="simple"
-          transitionAppearTimeout={ 600 }
-          transitionEnterTimeout={ 600 }
-          transitionLeaveTimeout={ 600 }
-          className={ `simple-container ${ !isTerm ? NAV_TOP : '' }` }
-          component="div"
-        >
-          { !isTerm ? (
-            <SimpleNavigation blurbs={ blurbs } />
-          ) : null }
-        </ReactCSSTransitionGroup>
+        <SimpleNavigation
+          blurbs={ blurbs }
+          className={ !isTerm ? NAV_TOP : '' }
+        />
         <ReactCSSTransitionGroup
           transitionName="terminal"
           transitionAppearTimeout={ 600 }
