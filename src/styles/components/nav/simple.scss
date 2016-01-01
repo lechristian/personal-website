@@ -1,12 +1,48 @@
+.simple-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  &.nav-top {
+    z-index: 2;
+  }
+
+  .simple-enter {
+    opacity: 0;
+    transition: opacity 600ms;
+
+    &.simple-enter-active {
+      opacity: 1;
+    }
+  }
+
+  .simple-leave {
+    opacity: 1;
+    transition: opacity 600ms;
+
+    &.simple-leave-active {
+      opacity: 0.25;
+    }
+  }
+
+  .simple-appear {
+    opacity: 0;
+    transition: opacity 600ms;
+
+    &.simple-appear-active {
+      opacity: 1;
+    }
+  }
+}
+
 .simple-nav {
   z-index: 1;
 
   @media screen and (min-width: $break-point-terminal) {
     padding: 15%;
-  }
-
-  &.navTop {
-    z-index: 100;
   }
 
   ul.outer {

@@ -23,83 +23,8 @@
     width: $size-terminal-pane;
   }
 
-  .nav-container {
+  .navs-container {
     height: 100%;
-
-    .terminal-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      z-index: 2;
-
-      .terminal-enter {
-        top: 95%;
-        left: 47.5%;
-        opacity: 0.1;
-        height: 5%;
-        width: 5%;
-        transition:
-          top 750ms,
-          left 750ms,
-          opacity 750ms,
-          height 750ms,
-          width 750ms;
-
-        &.terminal-enter-active {
-          top: 0;
-          left: 0;
-          opacity: 1;
-          height: 100%;
-          width: 100%;
-        }
-      }
-
-      .terminal-leave {
-        top: 0;
-        left: 0;
-        opacity: 1;
-        height: 100%;
-        width: 100%;
-        transition:
-          top 750ms,
-          left 750ms,
-          opacity 750ms,
-          height 750ms,
-          width 750ms;
-
-        &.terminal-leave-active {
-          top: 95%;
-          left: 47.5%;
-          opacity: 0.1;
-          height: 5%;
-          width: 5%;
-        }
-      }
-
-      .terminal-appear {
-        top: 95%;
-        left: 47.5%;
-        opacity: 0.1;
-        height: 5%;
-        width: 5%;
-        transition:
-          top 750ms,
-          left 750ms,
-          opacity 750ms,
-          height 750ms,
-          width 750ms;
-
-        &.terminal-appear-active {
-          top: 0;
-          left: 0;
-          opacity: 1;
-          height: 100%;
-          width: 100%;
-        }
-      }
-    }
 
     .launcher-container {
       position: absolute;
@@ -112,7 +37,8 @@
       margin-right: auto;
       background: none;
       cursor: pointer;
-      z-index: 10;
+      user-select: none;
+      z-index: 3;
 
       .launcher-icon {
         bottom: 15px;
@@ -141,7 +67,7 @@
       .launcher-enter {
         bottom: -100px;
         opacity: 0.5;
-        transition: bottom 750ms, opacity 750ms;
+        transition: bottom 600ms, opacity 600ms;
 
         &.launcher-enter-active {
           bottom: 15px;
@@ -152,7 +78,7 @@
       .launcher-leave {
         bottom: 15px;
         opacity: 1;
-        transition: bottom 750ms, opacity 750ms;
+        transition: bottom 600ms, opacity 600ms;
 
         &.launcher-leave-active {
           bottom: -100px;
@@ -163,7 +89,7 @@
       .launcher-appear {
         bottom: -100px;
         opacity: 0.5;
-        transition: bottom 750ms, opacity 750ms;
+        transition: bottom 600ms, opacity 600ms;
 
         &.launcher-appear-active {
           bottom: 15px;

@@ -14,6 +14,8 @@ import TerminalNavigation from 'src/shared/components/nav/terminal';
 
 import * as NavigationActions from 'src/shared/actions/navigation';
 
+const NAV_TOP = 'nav-top';
+
 class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -25,54 +27,54 @@ class Navigation extends Component {
 
   render() {
     const { blurbs, navigation } = this.props;
-
-    let navTop = 'navTop';
-    let terminalNavigation = null;
-    let launcherIcon = (
-      <div className="launcher-icon">
-        <div className="menu-bar"></div>
-        <div className="greater">&gt;</div>
-      </div>
-    );
-
-    if (navigation.terminal) {
-      terminalNavigation = (
-        <TerminalNavigation
-          blurbs={ blurbs }
-          closeTerminal={ this.props.toggleTerminal }
-          key="terminal"
-        />
-      );
-
-      launcherIcon = null;
-      navTop = '';
-    }
-
+    const isTerm = navigation.terminal;
 
     return (
-      <div className="nav-container">
+      <div className="navs-container">
         <ReactCSSTransitionGroup
-          transitionName="terminal"
-          transitionAppearTimeout={ 750 }
-          transitionEnterTimeout={ 750 }
-          transitionLeaveTimeout={ 750 }
-          className="terminal-container"
+          transitionName="simple"
+          transitionAppearTimeout={ 600 }
+          transitionEnterTimeout={ 600 }
+          transitionLeaveTimeout={ 600 }
+          className={ `simple-container ${ !isTerm ? NAV_TOP : '' }` }
           component="div"
         >
-          { terminalNavigation }
+          { !isTerm ? (
+            <SimpleNavigation blurbs={ blurbs } />
+          ) : null }
+        </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          transitionName="terminal"
+          transitionAppearTimeout={ 600 }
+          transitionEnterTimeout={ 600 }
+          transitionLeaveTimeout={ 600 }
+          className={ `terminal-container ${ isTerm ? NAV_TOP : '' }` }
+          component="div"
+        >
+          { isTerm ? (
+            <TerminalNavigation
+              blurbs={ blurbs }
+              closeTerminal={ this.props.toggleTerminal }
+              key="terminal"
+            />
+          ) : null }
         </ReactCSSTransitionGroup>
         <ReactCSSTransitionGroup
           transitionName="launcher"
-          transitionAppearTimeout={ 750 }
-          transitionEnterTimeout={ 750 }
-          transitionLeaveTimeout={ 750 }
+          transitionAppearTimeout={ 600 }
+          transitionEnterTimeout={ 600 }
+          transitionLeaveTimeout={ 600 }
           className="launcher-container"
           component="div"
           onClick={ this.props.toggleTerminal }
         >
-          { launcherIcon }
+          { !isTerm && navigation.launcher ? (
+            <div className="launcher-icon">
+              <div className="menu-bar"></div>
+              <div className="greater">&gt;</div>
+            </div>
+          ) : null }
         </ReactCSSTransitionGroup>
-        <SimpleNavigation className={ navTop } blurbs={ blurbs } />
       </div>
     );
   }

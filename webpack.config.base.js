@@ -47,6 +47,7 @@ module.exports = {
   ],
   postcss: [
     cssnano({
+      safe: true,
       sourcemap: true,
       autoprefixer: {
         add: true,
