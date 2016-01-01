@@ -19,13 +19,18 @@ class Navigation extends Component {
   }
 
   componentDidMount() {
-    // Launch Terminal
+    this.props.toggleTerminal();
   }
 
   render() {
     const { blurbs, navigation } = this.props;
 
-    console.log(navigation);
+    if (navigation.terminal) {
+      console.log('Terminal');
+      // return (
+      //   <TerminalNavigation blurbs={ blurbs } />
+      // );
+    }
 
     return (
       <SimpleNavigation blurbs={ blurbs } />
@@ -35,7 +40,8 @@ class Navigation extends Component {
 
 Navigation.propTypes = {
   blurbs: PropTypes.array,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
+  toggleTerminal: PropTypes.func
 };
 
 function mapStateToProps(state) {

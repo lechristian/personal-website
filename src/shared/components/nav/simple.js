@@ -13,14 +13,8 @@ class SimpleNavigation extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    // Launch Terminal
-  }
-
   render() {
-    const { blurbs, navigation } = this.props;
-
-    console.log(navigation);
+    const { blurbs } = this.props;
 
     const blurbLinks = _.map(blurbs, (blurb, index) => {
       const fileName = blurb.file.replace(/\.md$/, '');
@@ -55,8 +49,7 @@ class SimpleNavigation extends Component {
 }
 
 SimpleNavigation.propTypes = {
-  blurbs: PropTypes.array,
-  navigation: PropTypes.object
+  blurbs: PropTypes.array
 };
 
 export default SimpleNavigation;

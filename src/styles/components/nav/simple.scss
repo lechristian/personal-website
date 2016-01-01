@@ -18,7 +18,7 @@
       list-style: none;
       display: inline-block;
       margin: 0 4%;
-      color: $l-grey;
+      color: $white;
       text-transform: uppercase;
 
       @media screen and (min-width: $break-point-med-nav) {
@@ -63,8 +63,15 @@
           list-style: circle inside;
           margin: 0 0 0.75rem 0;
           font-weight: 300;
-          color: $m-grey;
+          color: $l-grey;
           text-transform: none;
+          opacity: 0.75;
+
+          transition: opacity 0.1s;
+
+          &:hover {
+            opacity: 1;
+          }
 
           a {
             font-weight: 300;

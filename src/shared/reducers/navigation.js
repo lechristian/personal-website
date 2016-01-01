@@ -15,6 +15,7 @@ const defaultNavigationState = {
 export default function blurb(state = defaultNavigationState, action) {
   switch (action.type) {
     case TOGGLE_TERMINAL:
+      console.log('Toggled');
       const newState = objectAssign({}, state);
       newState.terminal = !state.terminal;
       return newState;
