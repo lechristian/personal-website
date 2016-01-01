@@ -18,6 +18,11 @@ h4, .h4 {
   font-weight: normal;
 }
 
+h4, .h5 {
+  @include font-size(1.15);
+  font-weight: normal;
+}
+
 p, .p {
   @include font-size(1);
   font-weight: normal;

@@ -1,33 +1,75 @@
 .simple-nav {
-  padding: 15%;
   width: 100%;
+
+  @media screen and (min-width: $break-point-terminal) {
+    padding: 15%;
+  }
 
   ul.outer {
     list-style: none;
+    text-align: center;
+
+    @media screen and (min-width: $break-point-terminal) {
+      text-align: left;
+    }
 
     li {
-      @extend .h4;
-      width: 100%;
-      margin-bottom: 3rem;
+      @extend .h5;
+      list-style: none;
+      display: inline-block;
+      margin: 0 4%;
       color: $l-grey;
       text-transform: uppercase;
 
+      @media screen and (min-width: $break-point-med-nav) {
+        @extend .h4;
+        margin: 0 8%;
+      }
+
+      @media screen and (min-width: $break-point-terminal) {
+        width: 100%;
+        margin: 0 0 4rem 0;
+      }
+
       a {
-        letter-spacing: 0.25rem;
+        font-weight: 300;
+        line-height: $size-bottom-pane-small;
+        letter-spacing: 0.1rem;
+
+        @media screen and (min-width: $break-point-med-nav) {
+          line-height: $size-bottom-pane;
+          letter-spacing: 0.25rem;
+        }
+
+        @media screen and (min-width: $break-point-terminal) {
+          font-weight: 500;
+          line-height: 1;
+        }
       }
 
       ul.inner {
-        margin-top: 0.75rem;
-        margin-left: 1.2rem;
+        display: none;
+        list-style: circle inside;
+
+        @media screen and (min-width: $break-point-terminal) {
+          display: block;
+          margin: 0.75rem 0 0 0;
+          text-align: left;
+        }
 
         li {
-          @include font-size(1.2);
+          @extend .h5;
+          display: list-item;
+          list-style: circle inside;
+          margin: 0 0 0.75rem 0;
           font-weight: 300;
           color: $m-grey;
           text-transform: none;
 
           a {
+            font-weight: 300;
             letter-spacing: 0;
+            line-height: 1;
           }
         }
       }
