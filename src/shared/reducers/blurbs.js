@@ -13,6 +13,7 @@ export default function blurbs(state = [], action) {
         return action.res.data;
       }
       return action.res;
+
     default:
       return state;
   }

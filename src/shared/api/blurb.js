@@ -5,7 +5,7 @@
  * ========================================================================== */
 
 export function getBlurb(fileName) {
-  const file = fileName + '.md';
+  const file = `${ fileName }.md`;
 
   if (process.env.BROWSER) {
     const axios = require('axios');

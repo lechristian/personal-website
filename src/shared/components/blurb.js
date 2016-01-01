@@ -11,8 +11,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import DocumentTitle from 'react-document-title';
 import ReactMarkdown from 'react-markdown';
-import * as BlurbActions from 'src/shared/actions/blurb';
+
 import Error404 from 'src/shared/components/404';
+
+import * as BlurbActions from 'src/shared/actions/blurb';
 
 class Blurb extends Component {
   constructor(props) {

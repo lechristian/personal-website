@@ -1,5 +1,9 @@
 /* ==========================================================================
- * ./src/shared/components/termianl.js
+ * ./src/server/router/blurbs.js
  *
- * Terminal Navigation
+ * /api/blurbs
  * ========================================================================== */
+
+export function getBlurbs(req, res) {
+  res.json(require('static/blurbs/index.json'));
+};

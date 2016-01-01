@@ -4,11 +4,10 @@
  * App routes
  * ========================================================================== */
 
-import { Route } from 'react-router';
 import React from 'react';
+import { Route } from 'react-router';
 
 import App from 'src/shared/components/app';
-
 import HomePage from 'src/shared/components/home';
 import PhotosPage from 'src/shared/components/photos';
 import BlurbsPage from 'src/shared/components/blurbs';

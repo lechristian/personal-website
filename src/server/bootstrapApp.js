@@ -11,6 +11,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RoutingContext } from 'react-router';
 import DocumentTitle from 'react-document-title';
+
 import { fetchComponentData } from 'src/shared/api/utils/fetchComponentData';
 import configureStore from 'src/shared/store/configureStore';
 import renderHtml from 'src/server/renderHTML';

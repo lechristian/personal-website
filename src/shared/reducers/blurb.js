@@ -4,8 +4,9 @@
  * Blurb Reducer
  * ========================================================================== */
 
-import { GET_BLURB } from 'src/shared/actions/blurb';
 import objectAssign from 'object-assign';
+
+import { GET_BLURB } from 'src/shared/actions/blurb';
 
 const defaultBlurbState = {
   cache: {}
@@ -32,10 +33,9 @@ export default function blurb(state = defaultBlurbState, action) {
         markdown,
         fileName
       };
-
       newState.currentBlurb = action.fileName;
-
       return newState;
+
     default:
       return state;
   }

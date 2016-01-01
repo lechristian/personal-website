@@ -4,11 +4,12 @@
  * Blurbs List Page
  * ========================================================================== */
 
+import _ from 'lodash';
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import DocumentTitle from 'react-document-title';
-import _ from 'lodash';
 
 const mdExtRegex = /\.md$/;
 const preNumRegex = /^[0-9]*/;
