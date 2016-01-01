@@ -65,7 +65,7 @@ class Home extends Component {
           <p className="h4 light margin-bottom-2">
             I spend my free time flying quadcopters, drinking boba/tea,
             catching up on TV shows, attemping to go on photo adventures, and
-            contemptating when I'll next pick up my tennis racket.
+            contemplating when I'll next pick up my tennis racket.
           </p>
         </div>
       </div>

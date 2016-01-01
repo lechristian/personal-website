@@ -28,7 +28,7 @@ class SimpleNavigation extends Component {
     });
 
     return (
-      <div className="simple-nav">
+      <div className={ `simple-nav ${ this.props.className }` }>
         <ul className="outer">
           <li>
             <Link to="/">Home</Link>
@@ -49,7 +49,8 @@ class SimpleNavigation extends Component {
 }
 
 SimpleNavigation.propTypes = {
-  blurbs: PropTypes.array
+  blurbs: PropTypes.array,
+  className: PropTypes.string
 };
 
 export default SimpleNavigation;

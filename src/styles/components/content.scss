@@ -9,6 +9,11 @@
   z-index: 1;
 
   @media screen and (min-width: $break-point-terminal) {
+    left: $size-terminal-pane-small;
+    width: $size-content-pane-small;
+  }
+
+  @media screen and (min-width: $break-point-terminal-large) {
     left: $size-terminal-pane;
     width: $size-content-pane;
   }
