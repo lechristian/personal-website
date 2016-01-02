@@ -28,10 +28,6 @@ class App extends Component {
   }
 
   render() {
-    if (process.env.BROWSER) {
-      console.log(process.env.GA_ID);
-    }
-
     return (
       <DocumentTitle title="Christian Le">
         <div className="container">

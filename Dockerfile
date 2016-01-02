@@ -7,7 +7,7 @@ ADD . /usr/src/app
 WORKDIR /usr/src/app
 
 RUN npm run slate
-RUN npm run build
+RUN GA_ID=UA-49527002-6 npm run build
 
 EXPOSE 3000
 
