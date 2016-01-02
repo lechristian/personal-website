@@ -34,7 +34,10 @@ export default function executeCommand(state = defaultTerminalState, action) {
       if (commands[action.payload.command]) {
         newState.executed = commands[action.payload.command](state.executed);
       } else {
-        newState.executed = commands[UNKNOWN_COMMAND](state.executed);
+        newState.executed = commands[UNKNOWN_COMMAND](
+          state.executed,
+          action.payload.command
+        );
       }
 
       newState.timestamp = (new Date()).toString() + randomNum().toString();

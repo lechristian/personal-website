@@ -31,10 +31,10 @@ const possibleCommands = {
   }
 };
 
-possibleCommands[UNKNOWN_COMMAND] = (executed) => {
+possibleCommands[UNKNOWN_COMMAND] = (executed, command) => {
   const unknownState = _.clone(executed);
   unknownState.push({
-    command: UNKNOWN_COMMAND,
+    command,
     response: UNKNOWN_RESPONSE
   });
 
