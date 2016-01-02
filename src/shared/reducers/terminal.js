@@ -18,14 +18,26 @@ function randomNum() {
   return Math.random();
 }
 
+function newExecutedCommands(executed, payload) {
+  switch (payload.command.toLowerCase()) {
+    case 'clear':
+      return [];
+
+    default:
+      const newExecutedState = _.clone(executed);
+      newExecutedState.push({
+        command: payload.command
+      });
+
+      return newExecutedState;
+  }
+}
+
 export default function executeCommand(state = defaultTerminalState, action) {
   switch (action.type) {
     case EXECUTE_COMMAND:
       const newState = objectAssign({}, state);
-      newState.executed = _.clone(state.executed);
-      newState.executed.push({
-        command: action.payload.command
-      });
+      newState.executed = newExecutedCommands(state.executed, action.payload);
       newState.timestamp = (new Date()).toString() + randomNum().toString();
       return newState;
 
