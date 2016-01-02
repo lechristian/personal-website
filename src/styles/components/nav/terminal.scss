@@ -112,6 +112,13 @@ $menu-bar-height: 36px;
         font-family: $font-family-monospace;
         font-weight: 400;
         opacity: 0.65;
+
+        .previous--item {
+          .response {
+            margin: 8px 0 20px 0;
+            white-space: pre-line;
+          }
+        }
       }
 
       .prompt {

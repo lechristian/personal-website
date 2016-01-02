@@ -46,9 +46,12 @@ class TerminalNavigation extends Component {
 
     const previousExecutions = _.map(executed, (e, index) => {
       return (
-        <div key={ `previous-comment-${ index }` }>
+        <div className="previous--item" key={ `previous-comment-${ index }` }>
           { STATIC_PROMPT }
           <span className="color--l-grey">{ e.command }</span>
+          <div className="response">
+            { e.response }
+          </div>
         </div>
       );
     });
