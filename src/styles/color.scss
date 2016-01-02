@@ -1,0 +1,41 @@
+.color {
+  &--primary {
+    color: $primary;
+  }
+
+  &--accent {
+    color: $accent;
+  }
+
+  &--danger {
+    color: $danger;
+  }
+
+  &--warning {
+    color: $warning;
+  }
+
+  &--white {
+    color: $white;
+  }
+
+  &--l-grey {
+    color: $l-grey;
+  }
+
+  &--m-grey {
+    color: $m-grey;
+  }
+
+  &--grey {
+    color: $grey;
+  }
+
+  &--d-grey {
+    color: $d-grey;
+  }
+
+  &--black {
+    color: $black;
+  }
+}

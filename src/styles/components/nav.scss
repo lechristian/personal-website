@@ -24,82 +24,61 @@
   }
 
   .navs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    overflow: hidden;
 
-    .launcher-container {
+    .launcher-icon {
       display: none;
       position: absolute;
-      bottom: 0;
-      height: 60px;
-      width: 60px;
+      bottom: 15px;
       left: 0;
       right: 0;
       margin-left: auto;
       margin-right: auto;
-      background: none;
+      height: 60px;
+      width: 60px;
+      border-radius: 3px;
+      background: $black;
       cursor: pointer;
-      user-select: none;
-      z-index: 3;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
 
       @media screen and (min-width: $break-point-terminal) {
         display: block;
+        opacity: 0;
+        bottom: -65px;
+        z-index: 1;
+
+        transition: bottom 500ms, opacity 500ms;
+
+        &.nav-top {
+          opacity: 1;
+          bottom: 15px;
+          z-index: 3;
+        }
       }
 
-      .launcher-icon {
-        bottom: 15px;
-        height: 100%;
+      .menu-bar {
+        height: 12px;
         width: 100%;
-        border-radius: 3px;
-        background: $black;
-
-        .menu-bar {
-          height: 12px;
-          width: 100%;
-          border-top-left-radius: 3px;
-          border-top-right-radius: 3px;
-          background: $grey;
-        }
-
-        .greater {
-          margin-left: 4px;
-          font-family: $font-family-monospace;
-          font-weight: 700;
-          font-size: 1.5rem;
-          color: $l-grey;
-        }
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        background: $grey;
       }
 
-      .launcher-enter {
-        bottom: -100px;
-        opacity: 0.5;
-        transition: bottom 600ms, opacity 600ms;
-
-        &.launcher-enter-active {
-          bottom: 15px;
-          opacity: 1;
-        }
-      }
-
-      .launcher-leave {
-        bottom: 15px;
-        opacity: 1;
-        transition: bottom 600ms, opacity 600ms;
-
-        &.launcher-leave-active {
-          bottom: -100px;
-          opacity: 0.5;
-        }
-      }
-
-      .launcher-appear {
-        bottom: -100px;
-        opacity: 0.5;
-        transition: bottom 600ms, opacity 600ms;
-
-        &.launcher-appear-active {
-          bottom: 15px;
-          opacity: 1;
-        }
+      .greater {
+        margin-left: 4px;
+        font-family: $font-family-monospace;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: $l-grey;
       }
     }
   }

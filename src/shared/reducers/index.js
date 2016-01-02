@@ -8,12 +8,14 @@ import { combineReducers } from 'redux';
 import { routerStateReducer } from 'redux-router';
 
 import navigationReducer from 'src/shared/reducers/navigation';
+import terminalReducer from 'src/shared/reducers/terminal';
 import blurbsReducer from 'src/shared/reducers/blurbs';
 import blurbReducer from 'src/shared/reducers/blurb';
 
 const rootReducer = combineReducers({
   router: routerStateReducer,
   navigation: navigationReducer,
+  terminal: terminalReducer,
   blurbs: blurbsReducer,
   blurb: blurbReducer
 });

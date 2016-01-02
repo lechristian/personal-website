@@ -1,52 +1,9 @@
-.simple-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
-  &.nav-top {
-    z-index: 2;
-  }
-
-  @media screen and (min-width: $break-point-terminal) {
-    z-index: 4;
-  }
-
-  .simple-enter {
-    opacity: 0;
-    transition: opacity 600ms;
-
-    &.simple-enter-active {
-      opacity: 1;
-    }
-  }
-
-  .simple-leave {
-    opacity: 1;
-    transition: opacity 600ms;
-
-    &.simple-leave-active {
-      opacity: 0.25;
-    }
-  }
-
-  .simple-appear {
-    opacity: 0;
-    transition: opacity 600ms;
-
-    &.simple-appear-active {
-      opacity: 1;
-    }
-  }
-}
-
 .simple-nav {
+  width: 100%;
   opacity: 1;
-  z-index: 5;
+  z-index: 4;
 
-  transition: opacity 600ms;
+  transition: opacity 500ms;
 
   @media screen and (min-width: $break-point-terminal) {
     opacity: 0;

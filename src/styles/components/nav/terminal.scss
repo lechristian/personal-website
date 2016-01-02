@@ -1,100 +1,37 @@
-.terminal-container {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-
-  @media screen and (min-width: $break-point-terminal) {
-    display: block;
-
-    &.nav-top {
-      z-index: 2;
-    }
-  }
-
-  .terminal-enter {
-    top: 95%;
-    left: 47.5%;
-    opacity: 0;
-    height: 5%;
-    width: 5%;
-    transition:
-      top 600ms,
-      left 600ms,
-      opacity 600ms,
-      height 600ms,
-      width 600ms;
-
-    &.terminal-enter-active {
-      top: 0;
-      left: 0;
-      opacity: 1;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  .terminal-leave {
-    top: 0;
-    left: 0;
-    opacity: 1;
-    height: 100%;
-    width: 100%;
-    transition:
-      top 600ms,
-      left 600ms,
-      opacity 600ms,
-      height 600ms,
-      width 600ms;
-
-    &.terminal-leave-active {
-      top: 95%;
-      left: 47.5%;
-      opacity: 0;
-      height: 5%;
-      width: 5%;
-    }
-  }
-
-  .terminal-appear {
-    top: 95%;
-    left: 47.5%;
-    opacity: 0;
-    height: 5%;
-    width: 5%;
-    transition:
-      top 600ms,
-      left 600ms,
-      opacity 600ms,
-      height 600ms,
-      width 600ms;
-
-    &.terminal-appear-active {
-      top: 0;
-      left: 0;
-      opacity: 1;
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
+$menu-bar-height: 40px;
 
 .terminal-nav {
   display: none;
   width: 100%;
   height: 100%;
   background: none;
-  z-index: 2;
+  z-index: 1;
 
   @media screen and (min-width: $break-point-terminal) {
     display: block;
     position: absolute;
     padding: 20px 16px;
-    top: 0;
-    left: 0;
+    bottom: 3%;
+    left: 47%;
+    height: 5%;
+    width: 5%;
+    opacity: 0;
+
+    transition:
+      bottom 500ms,
+      left 500ms,
+      opacity 500ms,
+      height 500ms,
+      width 500ms;
+
+    &.nav-top {
+      bottom: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 1;
+      z-index: 2;
+    }
   }
 
   @media screen and (min-width: $break-point-terminal-large) {
@@ -111,7 +48,7 @@
       left: 0;
       width: 100%;
       height: 10%;
-      max-height: 40px;
+      max-height: $menu-bar-height;
       background: $grey;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
@@ -131,20 +68,66 @@
 
         transition: background-color 0.1s;
 
+        &::before {
+          position: absolute;
+          top: 9px;
+          left: 4px;
+          width: 12px;
+          height: 2px;
+          background: $black;
+          content: ' ';
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          position: absolute;
+          top: 9px;
+          left: 4px;
+          width: 12px;
+          height: 2px;
+          background: $black;
+          content: ' ';
+          transform: rotate(-45deg);
+        }
+
         &:hover {
           background: darken($danger, 10);
         }
       }
     }
 
-    .command {
+    .shell {
       position: absolute;
       width: 100%;
       height: 100%;
+      padding: 10px;
+      padding-top: $menu-bar-height + 10px;
       background: $black;
       border-radius: 6px;
+      color: $white;
       overflow-y: scroll;
       z-index: 1;
+
+      .previous {
+        font-family: $font-family-monospace;
+        font-weight: 400;
+        opacity: 0.65;
+      }
+
+      .prompt {
+        margin-right: 10px;
+
+        .start {
+          margin-right: 4px;
+        }
+      }
+
+      .command {
+        width: 90%;
+        background: none;
+        border: none;
+        color: $l-grey;
+      }
     }
   }
 }

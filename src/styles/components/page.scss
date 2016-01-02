@@ -11,11 +11,10 @@
   }
 
   @media screen and (min-width: 880px) {
-    padding: 20px;
+    padding: 2% 6%;
   }
 
   @media screen and (min-width: $break-point-terminal) {
-    padding: 24px;
     margin-bottom: $size-bottom-pane * 0.75;
   }
 }

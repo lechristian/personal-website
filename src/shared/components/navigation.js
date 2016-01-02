@@ -7,7 +7,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import SimpleNavigation from 'src/shared/components/nav/simple';
 import TerminalNavigation from 'src/shared/components/nav/terminal';
@@ -35,38 +34,19 @@ class Navigation extends Component {
           blurbs={ blurbs }
           className={ !isTerm ? NAV_TOP : '' }
         />
-        <ReactCSSTransitionGroup
-          transitionName="terminal"
-          transitionAppearTimeout={ 600 }
-          transitionEnterTimeout={ 600 }
-          transitionLeaveTimeout={ 600 }
-          className={ `terminal-container ${ isTerm ? NAV_TOP : '' }` }
-          component="div"
-        >
-          { isTerm ? (
-            <TerminalNavigation
-              blurbs={ blurbs }
-              closeTerminal={ this.props.toggleTerminal }
-              key="terminal"
-            />
-          ) : null }
-        </ReactCSSTransitionGroup>
-        <ReactCSSTransitionGroup
-          transitionName="launcher"
-          transitionAppearTimeout={ 600 }
-          transitionEnterTimeout={ 600 }
-          transitionLeaveTimeout={ 600 }
-          className="launcher-container"
-          component="div"
+        <TerminalNavigation
+          blurbs={ blurbs }
+          closeTerminal={ this.props.toggleTerminal }
+          className={ isTerm ? NAV_TOP : '' }
+          key="terminal"
+        />
+        <div
+          className={ `launcher-icon ${ !isTerm ? NAV_TOP : '' }` }
           onClick={ this.props.toggleTerminal }
         >
-          { !isTerm && navigation.launcher ? (
-            <div className="launcher-icon">
-              <div className="menu-bar"></div>
-              <div className="greater">&gt;</div>
-            </div>
-          ) : null }
-        </ReactCSSTransitionGroup>
+          <div className="menu-bar"></div>
+          <div className="greater">&gt;</div>
+        </div>
       </div>
     );
   }
