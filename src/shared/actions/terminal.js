@@ -5,6 +5,7 @@
  * ========================================================================== */
 
 import terminalStateUpdater from 'src/shared/api/commands';
+import { NULL_ACTION } from 'src/shared/actions/constants';
 
 export const EXECUTE_COMMAND = 'EXECUTE_COMMAND';
 export const DELETE_REDIRECT = 'DELETE_REDIRECT';
@@ -19,7 +20,9 @@ export function executeCommand(evt, path) {
     };
   }
 
-  return {};
+  return {
+    type: NULL_ACTION
+  };
 }
 
 export function deleteRedirect() {
