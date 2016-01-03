@@ -27,6 +27,7 @@ class Navigation extends Component {
   render() {
     const { blurbs, navigation } = this.props;
     const isTerm = navigation.terminal;
+    const showIcon = navigation.launcher;
 
     return (
       <div className="navs-container">
@@ -37,11 +38,11 @@ class Navigation extends Component {
         <TerminalNavigation
           blurbs={ blurbs }
           closeTerminal={ this.props.toggleTerminal }
-          className={ isTerm ? NAV_TOP : '' }
+          className={ `${isTerm ? NAV_TOP : ''} ${ !showIcon ? 'hide' : '' }` }
           key="terminal"
         />
         <div
-          className={ `launcher-icon ${ !isTerm ? NAV_TOP : '' }` }
+          className={ `launcher-icon ${ !isTerm && showIcon ? NAV_TOP : '' }` }
           onClick={ this.props.toggleTerminal }
         >
           <div className="menu-bar"></div>

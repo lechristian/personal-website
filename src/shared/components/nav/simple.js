@@ -20,7 +20,7 @@ class SimpleNavigation extends Component {
       const fileName = blurb.file.replace(/\.md$/, '');
       return (
         <li key={ `blurb-${ index }` }>
-          <Link to={ `/blurb/${ fileName }` }>
+          <Link to={ `/blurbs/${ fileName }` }>
             { blurb.title }
           </Link>
         </li>
