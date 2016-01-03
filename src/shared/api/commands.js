@@ -5,6 +5,9 @@
  * ========================================================================== */
 
 import _ from 'lodash';
+import axios from 'axios';
+import Promise from 'bluebird';
+
 import FileDirectory from 'src/shared/api/fileDirectory';
 import blurbs from 'static/blurbs/index.json';
 
@@ -32,110 +35,111 @@ const fileDirectory = new FileDirectory(fileDirectoryJson);
 
 const UNKNOWN_RESPONSE = 'unknown command';
 
+function testFilePath(commandParams, statePath) {
+  let location = commandParams.length > 1 ? commandParams[1] : '';
+  if (/^\.\//.test(location)) {
+    location = `${ statePath }/${ location.substring(1) }`;
+  } else if (statePath === '/') {
+    location = `/${ location }`;
+  } else {
+    location = `${ statePath }/${ location }`;
+  }
+
+  return location;
+}
+
 const possibleCommands = {
-  clear: (state) => {
-    const newState = state;
-    newState.executed = [];
-    return newState;
-  },
-  help: (state, commandParams) => {
-    const newState = state;
-    const command = commandParams.join(' ');
-
-    newState.executed = _.clone(state.executed);
-    newState.executed.push({
-      command,
-      path: state.path,
-      response: HELP_RESPONSE
+  clear: () => {
+    return new Promise((resolve) => {
+      resolve('clear');
     });
-
-    return newState;
   },
-  cd: (state, commandParams) => {
-    const newState = state;
-    newState.executed = _.clone(state.executed);
-
-    let location = commandParams.length > 1 ? commandParams[1] : '/';
-    if (state.path !== '/') {
-      location = `${ state.path }/${ location }`;
-    }
-    const response = fileDirectory.canEnterDirectory(location);
-
-    newState.executed.push({
-      command: commandParams.join(' '),
-      path: state.path,
-      response: response.enter ? null : response.path
+  help: () => {
+    return new Promise((resolve) => {
+      resolve({
+        message: HELP_RESPONSE
+      });
     });
-
-    newState.path = response.enter ? response.path : state.path;
-
-    return newState;
   },
-  ls: (state, commandParams) => {
-    const newState = state;
-    newState.executed = _.clone(state.executed);
+  cd: (commandParams, statePath) => {
+    return new Promise((resolve) => {
+      let location = commandParams.length > 1 ? commandParams[1] : '/';
+      if (statePath !== '/') {
+        location = `${ statePath }/${ location }`;
+      }
 
-    let location = commandParams.length > 1 ? commandParams[1] : '';
-    if (/^\.\//.test(location)) {
-      location = `${ state.path }/${ location.substring(1) }`;
-    } else {
-      location = `${ state.path }/${ location }`;
-    }
+      const response = fileDirectory.canEnterDirectory(location);
 
-    const response = fileDirectory.listDirectory(location);
-
-    newState.executed.push({
-      command: commandParams.join(' '),
-      path: state.path,
-      response: response.error || response
+      resolve({
+        path: response.enter ? response.path : null,
+        message: response.enter ? null : response.path
+      });
     });
-
-    return newState;
   },
-  open: (state, commandParams) => {
-    const newState = state;
-    newState.executed = _.clone(state.executed);
+  ls: (commandParams, statePath) => {
+    return new Promise((resolve) => {
+      const location = testFilePath(commandParams, statePath);
+      const response = fileDirectory.listDirectory(location);
 
-    let location = commandParams.length > 1 ? commandParams[1] : '';
-    if (location === '.') {
-      location = state.path;
-    } else if (/^\.\//.test(location)) {
-      location = `${ state.path }/${ location.substring(1) }`;
-    } else {
-      location = `${ state.path }/${ location }`;
-    }
-
-    const response = fileDirectory.open(location);
-
-    newState.executed.push({
-      command: commandParams.join(' '),
-      path: state.path,
-      response: response.error
+      resolve({
+        message: response.error || response
+      });
     });
+  },
+  open: (commandParams, statePath) => {
+    return new Promise((resolve) => {
+      const location = testFilePath(commandParams, statePath);
+      const response = fileDirectory.open(location);
 
-    newState.redirect = !response.error ? response.path : null;
-    return newState;
+      resolve({
+        redirect: !response.error ? response.path : null,
+        message: response.error
+      });
+    });
+  },
+  cat: (commandParams, statePath) => {
+    return new Promise((resolve) => {
+      const location = testFilePath(commandParams, statePath);
+      const response = fileDirectory.open(location);
+
+      if (response.error) {
+        resolve({
+          message: response.error
+        });
+      } else {
+        let type = location;
+        if (location.match(/\/[0-9]/)) {
+          type = 'blurb'; // Much hacking and laziness
+        } else {
+          type = location.replace(/\//g, '');
+        }
+
+        axios.get(`/api/cat/${ type }`).then((print) => {
+          resolve({
+            redirect: response.path,
+            message: print.data.str
+          });
+        });
+      }
+    });
   }
 };
 
-export default function terminalStateUpdater(state, command) {
-  let newState = state;
+export default function terminalStateUpdater(command, statePath) {
   const commandParams = command.split(' ');
 
-  if (possibleCommands[commandParams[0]]) {
-    newState = possibleCommands[commandParams[0]](state, commandParams);
-    if (commandParams[0] !== 'open' && commandParams[0] !== 'cat') {
-      delete newState.redirect;
+  return new Promise((resolve) => {
+    if (possibleCommands[commandParams[0]]) {
+      possibleCommands[commandParams[0]](commandParams, statePath)
+        .then((response) => {
+          resolve({
+            response
+          });
+        });
+    } else {
+      resolve({
+        response: UNKNOWN_RESPONSE
+      });
     }
-  } else {
-    const unknownCommandState = _.clone(state.executed);
-    unknownCommandState.push({
-      command,
-      path: state.path,
-      response: UNKNOWN_RESPONSE
-    });
-    newState.executed = unknownCommandState;
-  }
-
-  return _.clone(state);
+  });
 }

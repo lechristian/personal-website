@@ -143,6 +143,7 @@ $menu-bar-height: 36px;
         }
 
         .command {
+          flex-grow: 1;
           background: none;
           border: none;
           color: $l-grey;

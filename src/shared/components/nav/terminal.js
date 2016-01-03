@@ -27,11 +27,13 @@ class TerminalNavigation extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.render;
+    const { terminal } = nextProps;
+    return terminal.render;
   }
 
   componentDidUpdate() {
-    const { redirect, deleteRedirect } = this.props;
+    const { terminal, deleteRedirect } = this.props;
+    const { redirect } = terminal;
     if (redirect) {
       this.props.pushState(null, redirect, '');
       deleteRedirect();
@@ -45,11 +47,12 @@ class TerminalNavigation extends Component {
   }
 
   render() {
-    const { executed, timestamp, currentPath, className } = this.props;
+    const { terminal, className } = this.props;
+    const { executed, timestamp, path } = terminal;
 
     const previousExecutions = _.map(executed, (e, index) => {
       let responseStyling = e.response;
-      if (e.command === 'ls' && _.isArray(e.response)) {
+      if (_.includes(e.command, 'ls') && _.isArray(e.response)) {
         responseStyling = (
           <LsComponent listings={ e.response } />
         );
@@ -79,12 +82,14 @@ class TerminalNavigation extends Component {
               { previousExecutions }
             </div>
             <div className="command-line">
-              <PromptComponent promptPath={ currentPath.substring(1) } />
+              <PromptComponent promptPath={ path.substring(1) } />
               <input
                 key={ timestamp }
                 ref="commandInput"
                 className="command monospace"
-                onKeyDown={ this.props.executeCommand }
+                onKeyDown={ (evt) => {
+                  this.props.executeCommand(evt, path);
+                } }
               />
           </div>
           </div>
@@ -99,8 +104,9 @@ TerminalNavigation.propTypes = {
   executeCommand: PropTypes.func,
   pushState: PropTypes.func,
   deleteRedirect: PropTypes.func,
+  terminal: PropTypes.object,
   className: PropTypes.string,
-  currentPath: PropTypes.string,
+  path: PropTypes.string,
   executed: PropTypes.array,
   redirect: PropTypes.string,
   timestamp: PropTypes.string,
@@ -110,11 +116,7 @@ TerminalNavigation.propTypes = {
 function mapStateToProps(state) {
   const { terminal } = state;
   return {
-    currentPath: terminal.path,
-    executed: terminal.executed,
-    redirect: terminal.redirect,
-    timestamp: terminal.timestamp,
-    render: terminal.render
+    terminal
   };
 }
 

@@ -4,9 +4,9 @@
  * Ls Component for listing out after running ls
  * ========================================================================== */
 
-import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 class LsComponent extends Component {
   constructor(props) {

@@ -7,9 +7,7 @@
 import _ from 'lodash';
 
 import { EXECUTE_COMMAND, DELETE_REDIRECT } from 'src/shared/actions/terminal';
-import terminalStateUpdater, {
-  HELP_RESPONSE
-} from 'src/shared/api/commands';
+import { HELP_RESPONSE } from 'src/shared/api/commands';
 
 const defaultTerminalState = {
   executed: [
@@ -30,11 +28,30 @@ function randomNum() {
 export default function terminal(state = defaultTerminalState, action) {
   switch (action.type) {
     case EXECUTE_COMMAND:
-      const command = action.payload.command;
-      const newState = terminalStateUpdater(state, command);
+      const newState = _.clone(state);
+      const response = action.res.response;
+
+      const isClear = response === 'clear';
+      const executed = isClear ? [] : _.clone(newState.executed);
+      if (!isClear) {
+        executed.push({
+          command: action.command,
+          path: state.path,
+          response: response.message
+        });
+      }
+
+      if (response.path) {
+        newState.path = response.path;
+      }
+
+      if (response.redirect) {
+        newState.redirect = response.redirect;
+      }
+
+      newState.executed = executed;
       newState.render = true;
       newState.timestamp = (new Date()).toString() + randomNum().toString();
-
       return newState;
 
     case DELETE_REDIRECT:
