@@ -66,7 +66,10 @@ class FileDirectory {
   canEnterDirectory(pathString) {
     const resolvedPath = resolvePath(pathString);
     if (!resolvedPath) {
-      return false;
+      return {
+        enter: false,
+        path: NOT_DIRECTORY_STRING
+      };
     }
 
     if (resolvedPath === '/') {

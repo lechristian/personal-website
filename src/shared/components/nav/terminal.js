@@ -32,10 +32,8 @@ class TerminalNavigation extends Component {
 
   render() {
     const { executed, timestamp, currentPath, className } = this.props;
-    console.log(currentPath);
 
     const previousExecutions = _.map(executed, (e, index) => {
-      console.log(e);
       return (
         <div className="previous--item" key={ `previous-comment-${ index }` }>
           <div className="command-line">

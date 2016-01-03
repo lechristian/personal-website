@@ -55,9 +55,11 @@ const possibleCommands = {
     const newState = state;
     newState.executed = _.clone(state.executed);
 
-    const response = fileDirectory.canEnterDirectory(
-      commandParams.length > 1 ? commandParams[1] : '/'
-    );
+    let location = commandParams.length > 1 ? commandParams[1] : '/';
+    if (state.path !== '/') {
+      location = `${ state.path }/${ location }`;
+    }
+    const response = fileDirectory.canEnterDirectory(location);
 
     newState.executed.push({
       command: commandParams.join(' '),
@@ -74,7 +76,6 @@ const possibleCommands = {
 export default function terminalStateUpdater(state, command) {
   let newState = state;
   const commandParams = command.split(' ');
-  console.log(commandParams);
 
   if (possibleCommands[commandParams[0]]) {
     newState = possibleCommands[commandParams[0]](state, commandParams);
