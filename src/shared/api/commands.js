@@ -5,40 +5,89 @@
  * ========================================================================== */
 
 import _ from 'lodash';
+import FileDirectory from 'src/shared/api/fileDirectory';
+import blurbs from 'static/blurbs/index.json';
 
-export const UNKNOWN_COMMAND = 'unknown';
 export const HELP_RESPONSE = `- clear: Clear the shell\n
     - help: Get a list of possible commands\n
     - ls: List possible pages or folders to go to\n
-    - go: Go to a page or folder (just another page that holds more pages)\n
-    - cat: Same as 'go' but also prints the file used to render the page`;
+    - open: Open a page or folder (just another page that holds more pages)\n
+    - cat: Same as 'open' but also prints the file used to render the page`;
 
-const HELP_COMMAND = 'help';
+const blurbPaths = _.map(blurbs, (blurb) => {
+  return blurb.file.replace(/\.md$/, '');
+});
+
+const fileDirectoryJson = {
+  '/': [
+    'home',
+    'photos',
+    {
+      'blurbs': blurbPaths
+    }
+  ]
+};
+
+const fileDirectory = new FileDirectory(fileDirectoryJson);
+
 const UNKNOWN_RESPONSE = 'unknown command';
 
 const possibleCommands = {
-  clear: () => {
-    return [];
+  clear: (state) => {
+    const newState = state;
+    newState.executed = [];
+    return newState;
   },
-  help: (executed) => {
-    const helpState = _.clone(executed);
-    helpState.push({
-      command: HELP_COMMAND,
+  help: (state, commandParams) => {
+    const newState = state;
+    const command = commandParams.join(' ');
+
+    newState.executed = _.clone(state.executed);
+    newState.executed.push({
+      command,
+      path: state.path,
       response: HELP_RESPONSE
     });
 
-    return helpState;
+    return newState;
+  },
+  cd: (state, commandParams) => {
+    const newState = state;
+    newState.executed = _.clone(state.executed);
+
+    const response = fileDirectory.canEnterDirectory(
+      commandParams.length > 1 ? commandParams[1] : '/'
+    );
+
+    newState.executed.push({
+      command: commandParams.join(' '),
+      path: state.path,
+      response: response.enter ? null : response.path
+    });
+
+    newState.path = response.enter ? response.path : state.path;
+
+    return newState;
   }
 };
 
-possibleCommands[UNKNOWN_COMMAND] = (executed, command) => {
-  const unknownState = _.clone(executed);
-  unknownState.push({
-    command,
-    response: UNKNOWN_RESPONSE
-  });
+export default function terminalStateUpdater(state, command) {
+  let newState = state;
+  const commandParams = command.split(' ');
+  console.log(commandParams);
 
-  return unknownState;
-};
+  if (possibleCommands[commandParams[0]]) {
+    newState = possibleCommands[commandParams[0]](state, commandParams);
+  } else {
+    const unknownCommandState = _.clone(state.executed);
+    unknownCommandState.push({
+      command,
+      path: state.path,
+      response: UNKNOWN_RESPONSE
+    });
 
-export default possibleCommands;
+    newState.executed = unknownCommandState;
+  }
+
+  return _.clone(state);
+}

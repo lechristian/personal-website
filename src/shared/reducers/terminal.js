@@ -4,22 +4,20 @@
  * Terminal Reducer
  * ========================================================================== */
 
-import objectAssign from 'object-assign';
-
 import { EXECUTE_COMMAND } from 'src/shared/actions/terminal';
-import commands, {
-  HELP_RESPONSE,
-  UNKNOWN_COMMAND
+import terminalStateUpdater, {
+  HELP_RESPONSE
 } from 'src/shared/api/commands';
 
 const defaultTerminalState = {
   executed: [
     {
       command: 'help',
+      path: '/',
       response: HELP_RESPONSE
     }
   ],
-  input: ''
+  path: '/'
 };
 
 function randomNum() {
@@ -29,18 +27,10 @@ function randomNum() {
 export default function executeCommand(state = defaultTerminalState, action) {
   switch (action.type) {
     case EXECUTE_COMMAND:
-      const newState = objectAssign({}, state);
-
-      if (commands[action.payload.command]) {
-        newState.executed = commands[action.payload.command](state.executed);
-      } else {
-        newState.executed = commands[UNKNOWN_COMMAND](
-          state.executed,
-          action.payload.command
-        );
-      }
-
+      const command = action.payload.command;
+      const newState = terminalStateUpdater(state, command);
       newState.timestamp = (new Date()).toString() + randomNum().toString();
+
       return newState;
 
     default:

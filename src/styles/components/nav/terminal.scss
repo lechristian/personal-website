@@ -121,19 +121,22 @@ $menu-bar-height: 36px;
         }
       }
 
-      .prompt {
-        margin-right: 10px;
+      .command-line {
+        display: flex-inline;
 
-        .start {
-          margin-right: 4px;
+        .prompt {
+          margin-right: 10px;
+
+          .start {
+            margin-right: 4px;
+          }
         }
-      }
 
-      .command {
-        width: 90%;
-        background: none;
-        border: none;
-        color: $l-grey;
+        .command {
+          background: none;
+          border: none;
+          color: $l-grey;
+        }
       }
     }
   }

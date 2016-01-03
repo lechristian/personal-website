@@ -12,17 +12,6 @@ import { connect } from 'react-redux';
 
 import * as TerminalActions from 'src/shared/actions/terminal';
 
-const STATIC_PROMPT = (
-  <span className="prompt monospace">
-    <span className="start color--accent">
-      &loz;
-    </span>
-    <span className="color--primary">
-      &rArr;
-    </span>
-  </span>
-);
-
 class TerminalNavigation extends Component {
   constructor(props) {
     super(props);
@@ -42,13 +31,27 @@ class TerminalNavigation extends Component {
   }
 
   render() {
-    const { executed, timestamp, className } = this.props;
+    const { executed, timestamp, currentPath, className } = this.props;
+    console.log(currentPath);
 
     const previousExecutions = _.map(executed, (e, index) => {
+      console.log(e);
       return (
         <div className="previous--item" key={ `previous-comment-${ index }` }>
-          { STATIC_PROMPT }
-          <span className="color--l-grey">{ e.command }</span>
+          <div className="command-line">
+            <span className="prompt monospace">
+              <span className="start color--accent">
+                &loz;
+              </span>
+              <span className="start color--accent">
+                { e.path.substring(1) }
+              </span>
+              <span className="color--primary">
+                &rArr;
+              </span>
+            </span>
+            <span className="color--l-grey">{ e.command }</span>
+          </div>
           <div className="response">
             { e.response }
           </div>
@@ -66,13 +69,25 @@ class TerminalNavigation extends Component {
             <div className="previous">
               { previousExecutions }
             </div>
-            { STATIC_PROMPT }
-            <input
-              key={ timestamp }
-              ref="commandInput"
-              className="command monospace"
-              onKeyDown={ this.props.executeCommand }
-            />
+            <div className="command-line">
+              <span className="prompt monospace">
+                <span className="start color--accent">
+                  &loz;
+                </span>
+                <span className="start color--accent">
+                  { currentPath.substring(1) }
+                </span>
+                <span className="color--primary">
+                  &rArr;
+                </span>
+              </span>
+              <input
+                key={ timestamp }
+                ref="commandInput"
+                className="command monospace"
+                onKeyDown={ this.props.executeCommand }
+              />
+          </div>
           </div>
         </div>
       </div>
@@ -85,14 +100,16 @@ TerminalNavigation.propTypes = {
   closeTerminal: PropTypes.func,
   executeCommand: PropTypes.func,
   executed: PropTypes.array,
-  timestamp: PropTypes.string
+  timestamp: PropTypes.string,
+  currentPath: PropTypes.string
 };
 
 function mapStateToProps(state) {
   const { terminal } = state;
   return {
     executed: terminal.executed,
-    timestamp: terminal.timestamp
+    timestamp: terminal.timestamp,
+    currentPath: terminal.path
   };
 }
 
