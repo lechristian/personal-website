@@ -112,7 +112,6 @@ const possibleCommands = {
     });
 
     newState.redirect = !response.error ? response.path : null;
-
     return newState;
   }
 };
@@ -123,6 +122,9 @@ export default function terminalStateUpdater(state, command) {
 
   if (possibleCommands[commandParams[0]]) {
     newState = possibleCommands[commandParams[0]](state, commandParams);
+    if (commandParams[0] !== 'open' && commandParams[0] !== 'cat') {
+      delete newState.redirect;
+    }
   } else {
     const unknownCommandState = _.clone(state.executed);
     unknownCommandState.push({
@@ -130,7 +132,6 @@ export default function terminalStateUpdater(state, command) {
       path: state.path,
       response: UNKNOWN_RESPONSE
     });
-
     newState.executed = unknownCommandState;
   }
 

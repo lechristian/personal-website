@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 
+import PromptComponent from 'src/shared/components/nav/term/prompt';
 import LsComponent from 'src/shared/components/nav/term/ls';
 
 import * as TerminalActions from 'src/shared/actions/terminal';
@@ -52,17 +53,7 @@ class TerminalNavigation extends Component {
       return (
         <div className="previous--item" key={ `previous-comment-${ index }` }>
           <div className="command-line">
-            <span className="prompt monospace">
-              <span className="start color--accent">
-                &loz;
-              </span>
-              <span className="start color--accent">
-                { e.path.substring(1) }
-              </span>
-              <span className="color--primary">
-                &rArr;
-              </span>
-            </span>
+            <PromptComponent promptPath={ e.path.substring(1) } />
             <span className="color--l-grey">{ e.command }</span>
           </div>
           <div className="response">
@@ -83,17 +74,7 @@ class TerminalNavigation extends Component {
               { previousExecutions }
             </div>
             <div className="command-line">
-              <span className="prompt monospace">
-                <span className="start color--accent">
-                  &loz;
-                </span>
-                <span className="start color--accent">
-                  { currentPath.substring(1) }
-                </span>
-                <span className="color--primary">
-                  &rArr;
-                </span>
-              </span>
+              <PromptComponent promptPath={ currentPath.substring(1) } />
               <input
                 key={ timestamp }
                 ref="commandInput"
