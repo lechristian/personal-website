@@ -8,7 +8,8 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router';
+
+import LsComponent from 'src/shared/components/nav/term/ls';
 
 import * as TerminalActions from 'src/shared/actions/terminal';
 
@@ -34,6 +35,13 @@ class TerminalNavigation extends Component {
     const { executed, timestamp, currentPath, className } = this.props;
 
     const previousExecutions = _.map(executed, (e, index) => {
+      let responseStyling = e.response;
+      if (e.command === 'ls' && _.isArray(e.response)) {
+        responseStyling = (
+          <LsComponent listings={ e.response } />
+        );
+      }
+
       return (
         <div className="previous--item" key={ `previous-comment-${ index }` }>
           <div className="command-line">
@@ -51,7 +59,7 @@ class TerminalNavigation extends Component {
             <span className="color--l-grey">{ e.command }</span>
           </div>
           <div className="response">
-            { e.response }
+            { responseStyling }
           </div>
         </div>
       );

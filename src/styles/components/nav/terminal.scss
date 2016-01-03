@@ -117,6 +117,16 @@ $menu-bar-height: 36px;
           .response {
             margin: 8px 0 20px 0;
             white-space: pre-line;
+
+            .ls {
+              .option {
+                color: $accent;
+
+                &.folder {
+                  color: $warning;
+                }
+              }
+            }
           }
         }
       }

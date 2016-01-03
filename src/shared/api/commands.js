@@ -70,6 +70,27 @@ const possibleCommands = {
     newState.path = response.enter ? response.path : state.path;
 
     return newState;
+  },
+  ls: (state, commandParams) => {
+    const newState = state;
+    newState.executed = _.clone(state.executed);
+
+    let location = commandParams.length > 1 ? commandParams[1] : '';
+    if (/^\.\//.test(location)) {
+      location = `${ state.path }/${ location.substring(1) }`;
+    } else {
+      location = `${ state.path }/${ location }`;
+    }
+
+    const response = fileDirectory.listDirectory(location);
+
+    newState.executed.push({
+      command: commandParams.join(' '),
+      path: state.path,
+      response: response.error || response
+    });
+
+    return newState;
   }
 };
 
