@@ -1,7 +1,7 @@
 /* ==========================================================================
- * ./src/shared/components/nav/terminal.js
+ * ./src/shared/components/nav/term/ls.js
  *
- * Terminal Navigation
+ * Ls Component for listing out after running ls
  * ========================================================================== */
 
 import _ from 'lodash';
