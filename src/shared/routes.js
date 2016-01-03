@@ -19,7 +19,7 @@ export default (
     <Route path="home" component={ HomePage } />
     <Route path="photos" component={ PhotosPage } />
     <Route path="blurbs" component={ BlurbsPage } />
-    <Route path="blurb/:blurbId" component={ BlurbPage } />
+    <Route path="blurbs/:blurbId" component={ BlurbPage } />
     <Route path="*" component={ Error404 } />
   </Route>
 );

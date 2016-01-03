@@ -27,7 +27,7 @@ class Blurbs extends Component {
       const rowIndex = parseInt(blurb.file.match(preNumRegex), 10) - 1;
       const blurbFileName = blurb.file.replace(mdExtRegex, '');
       rows[rowIndex] = (
-        <Link key={ rowIndex } to={ `blurb/${ blurbFileName }` }>
+        <Link key={ rowIndex } to={ `blurbs/${ blurbFileName }` }>
           <div className="row">
             <h3 className="row--title bold">
               { blurb.title }

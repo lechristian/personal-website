@@ -132,6 +132,29 @@ class FileDirectory {
 
     return listings;
   }
+
+  open(pathString) {
+    const resolvedPath = resolvePath(pathString);
+    if (!resolvedPath) {
+      return {
+        error: NOT_FILE_DIRECTORY_STRING
+      };
+    }
+
+    for (let i = 0; i < this.paths.length; i += 1) {
+      const p = this.paths[i];
+      if (p === resolvedPath || p === `${ resolvedPath }/`) {
+        return {
+          error: null,
+          path: resolvedPath
+        };
+      }
+    }
+
+    return {
+      error: NOT_FILE_DIRECTORY_STRING
+    };
+  }
 }
 
 export default FileDirectory;

@@ -91,6 +91,29 @@ const possibleCommands = {
     });
 
     return newState;
+  },
+  open: (state, commandParams) => {
+    const newState = state;
+    newState.executed = _.clone(state.executed);
+
+    let location = commandParams.length > 1 ? commandParams[1] : '';
+    if (/^\.\//.test(location)) {
+      location = `${ state.path }/${ location.substring(1) }`;
+    } else {
+      location = `${ state.path }/${ location }`;
+    }
+
+    const response = fileDirectory.open(location);
+
+    newState.executed.push({
+      command: commandParams.join(' '),
+      path: state.path,
+      response: response.error
+    });
+
+    newState.redirect = !response.error ? response.path : null;
+
+    return newState;
   }
 };
 
