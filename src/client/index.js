@@ -10,7 +10,6 @@ import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import { ReduxRouter } from 'redux-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import _ from 'lodash';
 
 import showDevTools from 'src/client/showDevTools';
 
@@ -23,21 +22,6 @@ const history = createBrowserHistory();
 const initialState = window.__INITIAL_STATE__;
 const store = configureStore(initialState);
 const rootElement = document.getElementById('root');
-
-store.subscribe(() => {
-  const state = store.getState();
-  const newState = _.clone(state);
-
-  if (state.redirect) {
-    delete newState.redirect;
-    // const location = history.createLocation(state.redirect, newState);
-    history.pushState(newState, state.redirect);
-  } else if (state.terminal.redirect) {
-    delete newState.redirect;
-    // const location = history.createLocation(state.terminal.redirect, newState);
-    history.pushState(newState, state.terminal.redirect);
-  }
-});
 
 render(
   <Provider store={ store }>

@@ -8,10 +8,12 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
 
 import LsComponent from 'src/shared/components/nav/term/ls';
 
 import * as TerminalActions from 'src/shared/actions/terminal';
+TerminalActions.pushState = pushState;
 
 class TerminalNavigation extends Component {
   constructor(props) {
@@ -24,6 +26,11 @@ class TerminalNavigation extends Component {
   }
 
   componentDidUpdate() {
+    const { redirect } = this.props;
+    if (redirect) {
+      this.props.pushState(null, redirect, '');
+    }
+
     this._focusCommandInput();
   }
 
@@ -107,7 +114,9 @@ TerminalNavigation.propTypes = {
   executeCommand: PropTypes.func,
   executed: PropTypes.array,
   timestamp: PropTypes.string,
-  currentPath: PropTypes.string
+  currentPath: PropTypes.string,
+  pushState: PropTypes.func,
+  redirect: PropTypes.string
 };
 
 function mapStateToProps(state) {
@@ -115,7 +124,8 @@ function mapStateToProps(state) {
   return {
     executed: terminal.executed,
     timestamp: terminal.timestamp,
-    currentPath: terminal.path
+    currentPath: terminal.path,
+    redirect: terminal.redirect
   };
 }
 

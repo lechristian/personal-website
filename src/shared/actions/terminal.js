@@ -5,7 +5,6 @@
  * ========================================================================== */
 
 export const EXECUTE_COMMAND = 'EXECUTE_COMMAND';
-export const UPDATE_INPUT = 'UPDATE_INPUT';
 
 export function executeCommand(evt) {
   if (evt.which === 13) {
