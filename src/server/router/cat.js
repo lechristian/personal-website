@@ -9,6 +9,8 @@ import fs from 'fs-extra-promise';
 import _ from 'lodash';
 import tracer from 'tracer';
 
+import prism from 'utils/prism';
+
 const logger = tracer.colorConsole();
 const componentPath = path.resolve(__dirname, '../../shared/components/');
 const fileMap = {
@@ -24,8 +26,11 @@ _.forEach(fileMap, (value, key) => {
 });
 
 export function getFile(req, res) {
-  const type = req.params.componentType;
+  const componentType = req.params.componentType;
+  let highlighted = '<pre><code class="language-jsx">';
+  highlighted += prism.highlight(cache[componentType], prism.languages.jsx);
+  highlighted += '</code></pre>';
   res.json({
-    str: cache[type]
+    str: highlighted
   });
 };

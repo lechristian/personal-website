@@ -10,12 +10,12 @@ export const EXECUTE_COMMAND = 'EXECUTE_COMMAND';
 export const DELETE_REDIRECT = 'DELETE_REDIRECT';
 
 export function executeCommand(evt, path) {
-  console.log('Yo');
   if (evt.which === 13) {
+    const terminalPromise = terminalStateUpdater(evt.target.value, path);
     return {
       type: EXECUTE_COMMAND,
       command: evt.target.value,
-      promise: terminalStateUpdater(evt.target.value, path)
+      promise: terminalPromise
     };
   }
 

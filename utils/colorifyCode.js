@@ -9,8 +9,9 @@ const path = require('path');
 const fs = require('fs-extra-promise');
 const Promise = require('bluebird');
 const lineReader = require('line-reader');
-const hljs = require('node_modules/highlight.js/lib/index.js');
 const logger = require('tracer').colorConsole();
+
+const prism = require('./prism');
 
 const blurbsPath = '../static/blurbs/';
 
@@ -37,7 +38,7 @@ module.exports = function(file) {
             cb();
           } else if (line.match(/\`\`\`/) && codeFlag) {
             markdown += '<pre><code class="language-' + tempLang + '">';
-            markdown += hljs.highlight(tempLang, tempToParse, true).value;
+            markdown += prism.highlight(tempToParse, prism.languages[tempLang]);
             markdown += '</code></pre>';
             tempToParse = '';
             tempLang = '';

@@ -9,6 +9,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
+import ReactMarkdown from 'react-markdown';
 
 import PromptComponent from 'src/shared/components/nav/term/prompt';
 import LsComponent from 'src/shared/components/nav/term/ls';
@@ -55,6 +56,10 @@ class TerminalNavigation extends Component {
       if (_.includes(e.command, 'ls') && _.isArray(e.response)) {
         responseStyling = (
           <LsComponent listings={ e.response } />
+        );
+      } else if (_.includes(e.command, 'cat')) {
+        responseStyling = (
+          <ReactMarkdown source={ e.response } />
         );
       }
 
