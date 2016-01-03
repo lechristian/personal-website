@@ -13,7 +13,7 @@ const defaultNavigationState = {
   launcher: false
 };
 
-export default function blurb(state = defaultNavigationState, action) {
+export default function navigation(state = defaultNavigationState, action) {
   switch (action.type) {
     case TOGGLE_TERMINAL:
       const newState = objectAssign({}, state);

@@ -4,7 +4,7 @@
   "description": "http://christianle.com",
   "scripts": {
     "slate": "rm -rf node_modules && npm run clean && npm install",
-    "clean": "rm -rf dist && rm -f ./static/blurbs/index.json",
+    "clean": "rm -rf dist",
     "dev": "NODE_ENV=development node --harmony index.js --progress --colors --profile",
     "start": "NODE_ENV=production node --harmony index.js --progress --colors --profile",
     "build": "npm run clean && NODE_ENV=production ./node_modules/.bin/webpack -p --progress --colors --profile"

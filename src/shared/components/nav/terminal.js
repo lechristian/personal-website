@@ -26,10 +26,15 @@ class TerminalNavigation extends Component {
     this._focusCommandInput();
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.render;
+  }
+
   componentDidUpdate() {
-    const { redirect } = this.props;
+    const { redirect, deleteRedirect } = this.props;
     if (redirect) {
       this.props.pushState(null, redirect, '');
+      deleteRedirect();
     }
 
     this._focusCommandInput();
@@ -54,7 +59,7 @@ class TerminalNavigation extends Component {
         <div className="previous--item" key={ `previous-comment-${ index }` }>
           <div className="command-line">
             <PromptComponent promptPath={ e.path.substring(1) } />
-            <span className="color--l-grey">{ e.command }</span>
+            <span className="command--old color--l-grey">{ e.command }</span>
           </div>
           <div className="response">
             { responseStyling }
@@ -90,23 +95,26 @@ class TerminalNavigation extends Component {
 }
 
 TerminalNavigation.propTypes = {
-  className: PropTypes.string,
   closeTerminal: PropTypes.func,
   executeCommand: PropTypes.func,
-  executed: PropTypes.array,
-  timestamp: PropTypes.string,
-  currentPath: PropTypes.string,
   pushState: PropTypes.func,
-  redirect: PropTypes.string
+  deleteRedirect: PropTypes.func,
+  className: PropTypes.string,
+  currentPath: PropTypes.string,
+  executed: PropTypes.array,
+  redirect: PropTypes.string,
+  timestamp: PropTypes.string,
+  render: PropTypes.bool
 };
 
 function mapStateToProps(state) {
   const { terminal } = state;
   return {
-    executed: terminal.executed,
-    timestamp: terminal.timestamp,
     currentPath: terminal.path,
-    redirect: terminal.redirect
+    executed: terminal.executed,
+    redirect: terminal.redirect,
+    timestamp: terminal.timestamp,
+    render: terminal.render
   };
 }
 

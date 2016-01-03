@@ -97,7 +97,9 @@ const possibleCommands = {
     newState.executed = _.clone(state.executed);
 
     let location = commandParams.length > 1 ? commandParams[1] : '';
-    if (/^\.\//.test(location)) {
+    if (location === '.') {
+      location = state.path;
+    } else if (/^\.\//.test(location)) {
       location = `${ state.path }/${ location.substring(1) }`;
     } else {
       location = `${ state.path }/${ location }`;

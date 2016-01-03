@@ -132,7 +132,7 @@ $menu-bar-height: 36px;
       }
 
       .command-line {
-        display: flex-inline;
+        display: flex;
 
         .prompt {
           margin-right: 10px;
@@ -146,6 +146,10 @@ $menu-bar-height: 36px;
           background: none;
           border: none;
           color: $l-grey;
+
+          &--old {
+            margin-top: 2px;
+          }
         }
       }
     }

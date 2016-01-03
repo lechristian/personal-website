@@ -18,16 +18,18 @@ class LsComponent extends Component {
 
     const format = _.map(listings, (listing, index) => {
       const isFolder = listing[listing.length - 1] === '/';
-      const name = isFolder
+      const link = isFolder
         ? listing.substring(1, listing.length - 1)
         : listing.substring(1);
+
+      const name = listing.replace(/\/$/, '').split('/').pop();
 
       return (
         <div
           key={ `listing-${ index }` }
           className={ `option ${ isFolder ? 'folder' : '' }` }
         >
-          <Link to={ `/${ name }` }>{ name }</Link>
+          <Link to={ `/${ link }` }>{ name }</Link>
         </div>
       );
     });
