@@ -14,7 +14,7 @@ import blurbs from 'static/blurbs/index.json';
 export const HELP_RESPONSE = `- clear: Clear the shell\n
     - help: Get a list of possible commands\n
     - ls: List possible pages or folders to go to\n
-    - open: Open a page or folder (just another page that holds more pages)\n
+    - open: Go to a page or folder (just another page that holds more pages)\n
     - cat: Same as 'open' but also prints the file used to render the page`;
 
 const blurbPaths = _.map(blurbs, (blurb) => {

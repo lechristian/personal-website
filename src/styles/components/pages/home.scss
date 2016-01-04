@@ -14,4 +14,16 @@
       margin-top: 8%;
     }
   }
+
+  .links {
+    margin-top: 120px;
+    text-align: center;
+
+    .link {
+      display: inline-block;
+      width: auto;
+      margin: 0 10px;
+      text-align: center;
+    }
+  }
 }

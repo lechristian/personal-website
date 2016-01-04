@@ -22,13 +22,8 @@ class Home extends Component {
           </p>
           <p className="h3 light lineheight-m">
             a <b>
-              <a href="https://goo.gl/XA1hJV" target="_blank">
+              <a href="https://github.com/cle1994" target="_blank">
                 software engineer
-              </a>
-            </b>
-            &nbsp;and <b>
-              <a href="https://goo.gl/aBIyev" target="_blank">
-                photographer
               </a>
             </b>
             &nbsp;born and raised in <b>
@@ -36,7 +31,9 @@ class Home extends Component {
                 Southern California
               </a>
             </b> currently residing in the <b>
-              <a href="https://goo.gl/knXZm4" target="_blank">Bay Area</a>
+              <a href="https://goo.gl/knXZm4" target="_blank">
+                Bay Area
+              </a>
             </b> as a recent graduate from <b>
               <a href="http://www.berkeley.edu/" target="_blank">UC Berkeley</a>
             </b>. I co-founded and am currently working at <b>
@@ -67,6 +64,14 @@ class Home extends Component {
             catching up on TV shows, attemping to go on photo adventures, and
             contemplating when I'll next pick up my tennis racket.
           </p>
+        </div>
+        <div className="links">
+          <div className="link">
+            <a href="https://github.com/cle1994">GitHub</a>
+          </div>
+          <div className="link">
+            <a href="https://www.linkedin.com/in/christianle94">LinkedIn</a>
+          </div>
         </div>
       </div>
     );
