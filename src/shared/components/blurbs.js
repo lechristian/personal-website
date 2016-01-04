@@ -9,7 +9,9 @@ import _ from 'lodash';
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import DocumentTitle from 'react-document-title';
+import Helmet from 'react-helmet';
+
+import { updateHelmetProps } from 'config/helmet';
 
 const mdExtRegex = /\.md$/;
 const preNumRegex = /^[0-9]*/;
@@ -40,8 +42,15 @@ class Blurbs extends Component {
       );
     });
 
+    const helmetProps = updateHelmetProps(
+      'http://christianle.com/blurbs',
+      'Blurbs | Christian Le',
+      'A collection of blurbs about almost anything! I\'ll be using blurbs as a way to write tutorials, rants, and blogs.'
+    );
+
     return (
-      <DocumentTitle title="Blurbs | Christian Le">
+      <div>
+        <Helmet { ...helmetProps } />
         <div className="page page--blurbs">
           <h1 className="title center">
             Blurbs
@@ -55,7 +64,7 @@ class Blurbs extends Component {
             <Link to={'/'} className="inline">Home</Link>
           </div>
         </div>
-      </DocumentTitle>
+      </div>
     );
   }
 }

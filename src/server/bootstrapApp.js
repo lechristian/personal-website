@@ -10,7 +10,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { RoutingContext } from 'react-router';
-import DocumentTitle from 'react-document-title';
+import Helmet from 'react-helmet';
 
 import { fetchComponentData } from 'src/shared/api/utils/fetchComponentData';
 import configureStore from 'src/shared/store/configureStore';
@@ -33,10 +33,10 @@ export default function bootstrapApp(res, renderProps, state) {
     renderProps.params
   ).then(() => {
     const componentHTML = renderToString(InitialView);
-    const title = DocumentTitle.rewind();
+    const head = Helmet.rewind();
     const initialState = store.getState();
 
-    const viewRendered = renderHtml(componentHTML, initialState, title);
+    const viewRendered = renderHtml(componentHTML, initialState, head);
     res.status(200).end(viewRendered);
   })
   .catch(error => {

@@ -7,13 +7,15 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import DocumentTitle from 'react-document-title';
+import Helmet from 'react-helmet';
 import GoogleAnalytics from 'react-g-analytics';
 
 import Navigation from 'src/shared/components/navigation';
 import Home from 'src/shared/components/home';
 
 import * as BlurbsActions from 'src/shared/actions/blurbs';
+
+import { HelmetBaseConfig } from 'config/helmet';
 
 class App extends Component {
   constructor(props) {
@@ -29,7 +31,8 @@ class App extends Component {
 
   render() {
     return (
-      <DocumentTitle title="Christian Le">
+      <div>
+        <Helmet { ...HelmetBaseConfig } />
         <div className="container">
           <div className="nav">
             <Navigation />
@@ -40,7 +43,7 @@ class App extends Component {
           </div>
           <GoogleAnalytics id={ process.env.GA_ID } />
         </div>
-      </DocumentTitle>
+      </div>
     );
   }
 }
