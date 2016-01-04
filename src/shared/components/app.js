@@ -29,6 +29,10 @@ class App extends Component {
     }
   }
 
+  componentDidUpdate() {
+    this.refs.scrollingContainer.scrollTop = 0;
+  }
+
   render() {
     return (
       <div>
@@ -37,7 +41,7 @@ class App extends Component {
           <div className="nav">
             <Navigation />
           </div>
-          <div className="content">
+          <div ref="scrollingContainer" className="content">
             { !this.props.children && <Home /> }
             { this.props.children }
           </div>
