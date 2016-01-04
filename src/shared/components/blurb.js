@@ -31,7 +31,7 @@ class Blurb extends Component {
   }
 
   render() {
-    const { markdown, url } = this.props;
+    const { markdown, url, summary } = this.props;
 
     if (markdown && markdown.match(/^\<Not Found\>$/)) {
       return <Error404 />;
@@ -51,10 +51,15 @@ class Blurb extends Component {
     }
 
     const title = markdown.split('\n', 2)[0].substring(2);
+    const helmetProps = updateHelmetProps(
+      url,
+      `${ title } | Christian Le`,
+      summary
+    );
 
     return (
       <div>
-        <Helmet title={`${ title } | Christian Le`} />
+        <Helmet { ...helmetProps } />
         <div className="page page--blurb">
           <ReactMarkdown source={ markdown } />
           <div className="nav-links">
@@ -73,7 +78,8 @@ Blurb.propTypes = {
   fileName: PropTypes.object,
   isFetching: PropTypes.bool,
   fetchBlurb: PropTypes.func,
-  url: PropTypes.string
+  url: PropTypes.string,
+  summary: PropTypes.string
 };
 
 Blurb.need = [
@@ -82,33 +88,34 @@ Blurb.need = [
 
 function mapStateToProps(state) {
   const { blurb, router } = state;
+  const WEBSITE_URL = 'http://christianle.com/blurbs';
 
   if (_.size(blurb.cache) > 0 && blurb.currentBlurb) {
     const cacheHit = blurb.cache[blurb.currentBlurb];
     return {
-      url: router.location.pathname,
+      url: `${ WEBSITE_URL }/${ cacheHit.fileName.blurbId }`,
       isFetching: cacheHit.isFetching,
       markdown: cacheHit.markdown,
-      fileName: cacheHit.params
+      fileName: cacheHit.fileName,
+      summary: cacheHit.summary
     };
   } else if (blurb && router && blurb.cache[router.params.blurbId]) {
     const cacheHit = blurb.cache[router.params.blurbId];
     return {
-      url: router.location.pathname,
+      url: `${ WEBSITE_URL }/${ cacheHit.fileName.blurbId }`,
       isFetching: cacheHit.isFetching,
       markdown: cacheHit.markdown,
-      fileName: cacheHit.params
+      fileName: cacheHit.fileName,
+      summary: cacheHit.summary
     };
   } else if (blurb && router && !blurb.cache[router.params.blurbId]) {
     return {
-      url: router.location.pathname,
       isFetching: true,
       markdown: null,
       fileName: router.params
     };
   } else {
     return {
-      url: router.location.pathname,
       isFetching: false,
       markdown: null,
       fileName: null
