@@ -12,6 +12,13 @@ const defaultBlurbState = {
   cache: {}
 };
 
+const SUMMARY_REGEX = /\<\!\-\-\-[\s\S]*\-\-\>/;
+
+function getSummary(markdown) {
+  const rawSummary = markdown.match(SUMMARY_REGEX)[0].split(/\r?\n/);
+  return rawSummary.slice(1, -1).join(' ');
+}
+
 export default function blurb(state = defaultBlurbState, action) {
   switch (action.type) {
     case GET_BLURB:
@@ -21,17 +28,20 @@ export default function blurb(state = defaultBlurbState, action) {
         blurbId: action.fileName
       };
 
-      let markdown = {};
+      let markdown = '';
       if (action.res.data) {
         markdown = action.res.data.blurb;
       } else {
         markdown = action.res;
       }
 
+      const summary = getSummary(markdown);
+
       newState.cache[fileName.blurbId] = {
         isFetching,
         markdown,
-        fileName
+        fileName,
+        summary
       };
       newState.currentBlurb = action.fileName;
       return newState;

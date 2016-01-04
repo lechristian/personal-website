@@ -6,8 +6,11 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import Helmet from 'react-helmet';
 
 import requireImage from 'utils/requireImage';
+
+import { updateHelmetProps } from 'config/helmet';
 
 class Photos extends Component {
   render() {
@@ -20,16 +23,25 @@ class Photos extends Component {
       );
     }
 
+    const helmetProps = updateHelmetProps(
+      'http://christianle.com/photos',
+      'Photos | Christian Le',
+      'Here lies a small collection of photos I take.'
+    );
+
     return (
-      <div className="page page--photo">
-        <h1 className="title center">
-          Photos
-        </h1>
-        { photos }
-        <div className="nav-links">
-          <Link to={'/blurbs'} className="inline">Blurbs</Link>
-          <div className="inline">|</div>
-          <Link to={'/'} className="inline">Home</Link>
+      <div>
+        <Helmet { ...helmetProps } />
+        <div className="page page--photo">
+          <h1 className="title center">
+            Photos
+          </h1>
+          { photos }
+          <div className="nav-links">
+            <Link to={'/blurbs'} className="inline">Blurbs</Link>
+            <div className="inline">|</div>
+            <Link to={'/'} className="inline">Home</Link>
+          </div>
         </div>
       </div>
     );

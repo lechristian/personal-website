@@ -6,17 +6,26 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import DocumentTitle from 'react-document-title';
+import Helmet from 'react-helmet';
+
+import { updateHelmetProps } from 'config/helmet';
 
 class Error404 extends Component {
   render() {
+    const helmetProps = updateHelmetProps(
+      'http://christianle.com',
+      '404 | Christian Le',
+      'I think you tried to find a page that doesn\'t exist!'
+    );
+
     return (
-      <DocumentTitle title="Christian Le | 404">
+      <div>
+        <Helmet { ...helmetProps } />
         <div className="page page--404">
           <h1 className="page-title">404: Page not found</h1>
           <p><Link to="/home">Head back home</Link></p>
         </div>
-      </DocumentTitle>
+      </div>
     );
   }
 }
