@@ -107,11 +107,11 @@ const possibleCommands = {
           message: response.error
         });
       } else {
-        let type = location;
-        if (location.match(/\/[0-9]/)) {
+        let type = response.path;
+        if (type.match(/\/[0-9]/)) {
           type = 'blurb'; // Much hacking and laziness
         } else {
-          type = location.replace(/\//g, '');
+          type = type.replace(/\//g, '');
         }
 
         axios.get(`/api/cat/${ type }`).then((print) => {
