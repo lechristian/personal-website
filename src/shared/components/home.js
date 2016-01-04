@@ -72,6 +72,9 @@ class Home extends Component {
           <div className="link">
             <a href="https://www.linkedin.com/in/christianle94">LinkedIn</a>
           </div>
+          <div className="link">
+            <a href="mailto:christian@outcomes.com">Email</a>
+          </div>
         </div>
       </div>
     );
