@@ -14,13 +14,11 @@ export default function renderHTML(html, initialState, head) {
 
   const meta = head.meta.toString();
   const title = head.title.toString();
-  const link = head.link.toString();
 
   const htmlTemplate = _.template(htmlString);
   const rendered = htmlTemplate({
     meta,
     title,
-    link,
     html,
     initialState
   });
