@@ -67,13 +67,13 @@ class Home extends Component {
         </div>
         <div className="links">
           <div className="link">
-            <a href="https://github.com/cle1994">GitHub</a>
+            <a href="https://github.com/cle1994" target="_blank">GitHub</a>
           </div>
           <div className="link">
-            <a href="https://www.linkedin.com/in/christianle94">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/christianle94" target="_blank">LinkedIn</a>
           </div>
           <div className="link">
-            <a href="mailto:christian@outcomes.com">Email</a>
+            <a href="mailto:christian@outcomes.com" target="_blank">Email</a>
           </div>
         </div>
       </div>
