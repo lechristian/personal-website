@@ -27,11 +27,6 @@ class TerminalNavigation extends Component {
     this._focusCommandInput();
   }
 
-  shouldComponentUpdate(nextProps) {
-    const { terminal } = nextProps;
-    return terminal.render;
-  }
-
   componentDidUpdate() {
     const { terminal, deleteRedirect } = this.props;
     const { redirect } = terminal;
@@ -119,9 +114,10 @@ TerminalNavigation.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { terminal } = state;
+  const { terminal, navigation } = state;
   return {
-    terminal
+    terminal,
+    render: navigation.render
   };
 }
 
