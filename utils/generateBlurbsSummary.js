@@ -69,7 +69,7 @@ module.exports = function generateBlurbsSummary(callback) {
             cb(false);
           } else {
             if (line.indexOf('<!---') < 0) {
-              lineBuffer.push(line.replace(/\n/g, ' '));
+              lineBuffer.push((line.replace(/\n/g, ' ')).toString() + ' ');
             }
             cb();
           }

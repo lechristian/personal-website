@@ -47,17 +47,16 @@ stick with plain HTML, CSS, and javascript (with some jQuery sprinkled in
 there). That's not the problem though, it's when you want to start building more
 complex web apps, such as single page applications. You're going to do some
 Googling about which frameworks and libraries to use, or you're going to ask
-around and here lies the problem.
+around, and here lies the problem.
 
 #### Fanboys/Fangirls
 
 It drives me insane when someone asks about learning something in web development
 and the responses are *you should learn this, it's better* or *oh the technology
-you want to use sucks, use this*. Just no. These people probably have never used
-the other framework or are just bandwagoning on what's hip right now. Every
-framework has it's pros and cons. The war over which is better is complete and
-utter crap. You pick and use the technologies and tools that most easily solve
-your problems.
+you want to use sucks, use this*. Just no. These people probably are just
+bandwagoning on what's hip right now. Every framework has it's pros and cons.
+The war over which is better is complete and utter crap. You pick and use the
+technologies and tools that most easily solve your problems.
 
 #### Choices
 
@@ -68,13 +67,13 @@ Some backend frameworks: Node (Express, Koa, Hapi), Ruby on Rails, Play, Django,
 Flask.
 
 Honestly the list is a lot longer for each, I quite frankly haven't work with
-more than half of them. And here lives the problem. So. Many. Choices.
-Web technologies seem to grow daily and staying up to date is impossible. You
-play of game of choosing well documented and tested technologies vs. new and hip
-technologies of tomorrow. And it's hard to make that choice when you're starting
-out. On one hand, who wants to learn staling technologies just to learn a newer
-one in a month? But how do you start on something with little support if you're
-just starting out? Who knows, but there are some things you can consider.
+more than half of them. So. Many. Choices. Web technologies seem to grow daily
+and staying up to date is impossible. You play of game of choosing well
+documented and tested technologies vs. new and hip technologies of tomorrow. And
+it's hard to make that choice when you're starting out. On one hand, who wants
+to learn staling technologies just to learn a newer one in a month? But how do
+you start on something with little support if you're just starting out? Who
+knows, but there are some things you can consider.
 
 ### Advice
 
