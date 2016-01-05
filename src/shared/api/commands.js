@@ -25,6 +25,7 @@ const fileDirectoryJson = {
   '/': [
     'home',
     'photos',
+    'message',
     {
       'blurbs': blurbPaths
     }

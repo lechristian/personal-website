@@ -9,7 +9,7 @@ import _ from 'lodash';
 const ROOT_SYMBOL = '/';
 const NOT_FILE_DIRECTORY_STRING = 'Not a file or directory';
 const NOT_DIRECTORY_STRING = 'Not a directory';
-const FILES_REGEX = /(home|photos|.*\.md$)/;
+const FILES_REGEX = /(home|photos|message|.*\.md$)/;
 
 function generatePossiblePaths(directoryArray, parentPath) {
   let paths = [];

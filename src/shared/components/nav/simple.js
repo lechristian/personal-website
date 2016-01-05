@@ -42,6 +42,9 @@ class SimpleNavigation extends Component {
               { blurbLinks }
             </ul>
           </li>
+          <li>
+            <Link to="/message">Contact</Link>
+          </li>
         </ul>
       </div>
     );

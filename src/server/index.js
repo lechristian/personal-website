@@ -6,6 +6,7 @@
 
 import _ from 'lodash';
 import express from 'express';
+import bodyParser from 'body-parser';
 import tracer from 'tracer';
 import config from 'config';
 import path from 'path';
@@ -31,6 +32,10 @@ const logger = tracer.colorConsole();
 const api = router(express.Router());
 const app = express();
 
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
+app.use(bodyParser.json());
 app.use('/favicon', express.static(__dirname + '/../../favicon'));
 
 if (process.env.NODE_ENV !== 'production') {
