@@ -49,7 +49,7 @@ complex web apps, such as single page applications. You're going to do some
 Googling about which frameworks and libraries to use, or you're going to ask
 around and here lies the problem.
 
-##### Fanboys/Fangirls
+#### Fanboys/Fangirls
 
 It drives me insane when someone asks about learning something in web development
 and the responses are *you should learn this, it's better* or *oh the technology
@@ -59,7 +59,7 @@ framework has it's pros and cons. The war over which is better is complete and
 utter crap. You pick and use the technologies and tools that most easily solve
 your problems.
 
-##### Choices
+#### Choices
 
 Some front end frameworks: Angular.js, React, Polymer, Vue.js, jsBlocks, Elm,
 Backbone, Ember, Mithril.
@@ -97,7 +97,7 @@ demonstrates CRUD, what you'll be needing to build almost anything. Start with
 that exactly and replacing part by part until you can build something completely
 from scratch.
 
-##### Things you can look for when choosing what to learn.
+#### Things you can look for when choosing what to learn.
 
 CRUD examples, how data is created, read, updated, and deleted (HTTP requests,
 RESTful endpoints).
