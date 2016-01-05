@@ -17,10 +17,31 @@ opinions about those technologies that Googling starts to not help. I'm not
 saying options aren't good, I think it's great now that I know what I'm doing,
 but when you're starting out, it isn't always a pleasant place to be in.
 
-##### There are good things
+### There are good things
 
-I'm going to start with some positives not to dissuade you from starting
-because it's pretty fun once you get into a rhythm of things.
+I'm going to start with some positives, to not dissuade you from starting
+because it's pretty fun once you get into it. One of the greatest things is
+you don't actually have to "acquire" users. With apps for iOS or Android, people
+have to download your app, there's a barrier of entry. With web, just throw it
+up and send a link, done. Getting people to come back is another story, but
+hopefully your website has content that gets people coming back.
+
+Another thing is all you really need is internet, something that's connected
+to the internet, and a text editor. Notice I didn't say computer, because you
+could develop websites on your phone or tablet (just don't do it, it sounds like
+a terrible experience). Web development is extremely accessible.
+
+And remember how I was talking about options, it's actually one of the best
+things about web development. If you don't like a library, framework, package,
+module, plugin, whatever, there's most likely another one that'll be more to
+your liking. For example, I recently switched from superagent to axios because
+I liked the documentation more, and it had, in my opinion, better ES6 promise
+support. This does pose challenges too though, which will segue me into why
+I think web development is a pain if you're just starting out.
+
+### Why things suck
+
+
 
 ### Random Code Snippet
 
