@@ -1,0 +1,27 @@
+.page--message {
+  width: 100%;
+  max-width: 540px;
+  margin-top: 3%;
+
+  .image-wrapper {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  h3 {
+    margin-bottom: 32px;
+  }
+
+  .links {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+
+    .link {
+      display: inline-block;
+    }
+  }
+}
