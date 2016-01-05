@@ -59,8 +59,8 @@ module.exports = function(file) {
           }
         });
       })
-      .catch(function() {
-        reject('File does not exist');
+      .catch(function(err) {
+        reject(err);
       });
   });
 };

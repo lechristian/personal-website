@@ -15,6 +15,10 @@ const defaultBlurbState = {
 const SUMMARY_REGEX = /\<\!\-\-\-[\s\S]*\-\-\>/;
 
 function getSummary(markdown) {
+  if (markdown === '<Not Found>') {
+    return '';
+  }
+
   const rawSummary = markdown.match(SUMMARY_REGEX)[0].split(/\r?\n/);
   return rawSummary.slice(1, -1).join(' ');
 }

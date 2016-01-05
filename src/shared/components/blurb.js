@@ -18,6 +18,8 @@ import * as BlurbActions from 'src/shared/actions/blurb';
 
 import { updateHelmetProps } from 'config/helmet';
 
+const WEBSITE_URL = 'http://christianle.com/blurbs';
+
 class Blurb extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +29,14 @@ class Blurb extends Component {
     const { markdown, fileName } = this.props;
     if (!markdown) {
       this.props.fetchBlurb(fileName);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { router } = nextProps;
+    const { fileName } = this.props;
+    if (fileName && router.params.blurbId !== fileName.blurbId) {
+      this.props.fetchBlurb(router.params);
     }
   }
 
@@ -74,12 +84,14 @@ class Blurb extends Component {
 }
 
 Blurb.propTypes = {
-  markdown: PropTypes.string,
-  fileName: PropTypes.object,
-  isFetching: PropTypes.bool,
   fetchBlurb: PropTypes.func,
-  url: PropTypes.string,
-  summary: PropTypes.string
+  isFetching: PropTypes.bool,
+  router: PropTypes.object,
+  blubr: PropTypes.object,
+  fileName: PropTypes.object,
+  markdown: PropTypes.string,
+  summary: PropTypes.string,
+  url: PropTypes.string
 };
 
 Blurb.need = [
@@ -88,39 +100,34 @@ Blurb.need = [
 
 function mapStateToProps(state) {
   const { blurb, router } = state;
-  const WEBSITE_URL = 'http://christianle.com/blurbs';
 
-  if (_.size(blurb.cache) > 0 && blurb.currentBlurb) {
-    const cacheHit = blurb.cache[blurb.currentBlurb];
-    return {
-      url: `${ WEBSITE_URL }/${ cacheHit.fileName.blurbId }`,
-      isFetching: cacheHit.isFetching,
-      markdown: cacheHit.markdown,
-      fileName: cacheHit.fileName,
-      summary: cacheHit.summary
-    };
-  } else if (blurb && router && blurb.cache[router.params.blurbId]) {
-    const cacheHit = blurb.cache[router.params.blurbId];
-    return {
-      url: `${ WEBSITE_URL }/${ cacheHit.fileName.blurbId }`,
-      isFetching: cacheHit.isFetching,
-      markdown: cacheHit.markdown,
-      fileName: cacheHit.fileName,
-      summary: cacheHit.summary
-    };
-  } else if (blurb && router && !blurb.cache[router.params.blurbId]) {
-    return {
-      isFetching: true,
-      markdown: null,
-      fileName: router.params
-    };
-  } else {
-    return {
-      isFetching: false,
-      markdown: null,
-      fileName: null
-    };
+  if (_.size(blurb.cache) > 0) {
+    let blurbId;
+    if (blurb.currentBlurb) {
+      blurbId = blurb.currentBlurb;
+    } else {
+      blurbId = router.params.blurbId;
+    }
+
+    const cacheHit = blurb.cache[blurbId];
+    if (cacheHit) {
+      return {
+        url: `${ WEBSITE_URL }/${ cacheHit.fileName.blurbId }`,
+        isFetching: cacheHit.isFetching,
+        markdown: cacheHit.markdown,
+        fileName: cacheHit.fileName,
+        summary: cacheHit.summary,
+        router
+      };
+    }
   }
+
+  return {
+    isFetching: true,
+    markdown: null,
+    fileName: router.params,
+    router
+  };
 }
 
 function mapDispatchToProps(dispatch) {

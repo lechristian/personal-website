@@ -34,10 +34,12 @@ possible with Angular to get search engine optimization I just didn't find any
 solution very clean or affordable. Hence the move to React/Flux and a
 "universal" app. Ooohhh buzz words, added benefit of the technology change.
 
-Oh and go ahead, turn off Javascript. It's not an SEO thing but at least now I won't have to listen to people saying *"hmmmmm won't work on IE8, you should fix that"*. And yea I know it's not going to be the prettiest website on IE8, I
-frankly just don't care. Please move to a modern browser, a more secure browser,
-if you're reading this on IE8/9 and feeling offended. Trust me it's for your own
-good.
+Oh and go ahead, turn off Javascript. It's not an SEO thing but at least now I
+won't have to listen to people saying
+*"hmmmmm won't work on IE8, you should fix that"*. And yea I know it's not
+going to be the prettiest website on IE8, I frankly just don't care. Please
+move to a modern browser, a more secure browser, if you're reading this on IE8/9
+and feeling offended. Trust me it's for your own good.
 
 #### Learning
 
@@ -66,7 +68,7 @@ spread some knowledge =D.
 
 ### Random Code Snippet
 
-How to vertically allign something with css.
+How to vertically align something with css.
 
 ```css
 .vertically-align {
