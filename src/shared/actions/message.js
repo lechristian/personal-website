@@ -21,11 +21,17 @@ export function sendMessage(payload) {
 }
 
 export function updateValue(evt) {
+  if (evt) {
+    return {
+      type: UPDATE_MESSAGE,
+      payload: {
+        type: evt.target.id,
+        value: evt.target.value
+      }
+    };
+  }
+
   return {
-    type: UPDATE_MESSAGE,
-    payload: {
-      type: evt.target.id,
-      value: evt.target.value
-    }
+    type: UPDATE_MESSAGE
   };
 }

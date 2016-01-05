@@ -30,7 +30,9 @@ export default function message(state = defaultMessageState, action) {
       const newState = _.clone(state);
       const newMessage = _.clone(state.message);
 
-      newMessage[action.payload.type] = action.payload.value;
+      if (action.payload) {
+        newMessage[action.payload.type] = action.payload.value;
+      }
 
       newState.message = newMessage;
       newState.disable = _.filter(newMessage, (n) => {

@@ -118,6 +118,7 @@ function mapStateToProps(state) {
   return {
     message: state.message.message,
     sent: state.message.sent,
+    disable: state.message.disable,
     showEmail: state.showEmail
   };
 }

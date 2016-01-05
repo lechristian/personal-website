@@ -17,7 +17,8 @@ const fileMap = {
   home: `${ componentPath }/home.js`,
   photos: `${ componentPath }/photos.js`,
   blurbs: `${ componentPath }/blurbs.js`,
-  blurb: `${ componentPath }/blurb.js`
+  blurb: `${ componentPath }/blurb.js`,
+  message: `${ componentPath }/message.js`
 };
 
 const cache = {};
