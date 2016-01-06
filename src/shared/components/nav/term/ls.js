@@ -45,7 +45,7 @@ class LsComponent extends Component {
       return (
         <div
           key={ `listing-${ index }` }
-          className={ `no-select option ${ listing.isFolder ? 'folder' : '' }` }
+          className={ `option ${ listing.isFolder ? 'folder' : '' }` }
         >
           <Link to={ `/${ listing.link }` }>{ listing.name }</Link>
         </div>
