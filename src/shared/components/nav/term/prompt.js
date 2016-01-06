@@ -15,14 +15,14 @@ class PromptComponent extends Component {
     const { promptPath } = this.props;
 
     return (
-      <span className="prompt monospace">
-        <span className="start color--accent">
+      <span className="no-select prompt monospace">
+        <span className="no-select start color--accent">
           &loz;
         </span>
-        <span className="start color--accent">
+        <span className="no-select start color--accent">
           { promptPath }
         </span>
-        <span className="color--primary">
+        <span className="no-select color--primary">
           &rArr;
         </span>
       </span>

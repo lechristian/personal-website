@@ -59,12 +59,17 @@ class TerminalNavigation extends Component {
       }
 
       return (
-        <div className="previous--item" key={ `previous-comment-${ index }` }>
+        <div
+          className="previous--item"
+          key={ `no-select previous-comment-${ index }` }
+        >
           <div className="command-line">
             <PromptComponent promptPath={ e.path.substring(1) } />
-            <span className="command--old color--l-grey">{ e.command }</span>
+            <span className="no-select command--old color--l-grey">
+              { e.command }
+            </span>
           </div>
-          <div className="response">
+          <div className="no-select response">
             { responseStyling }
           </div>
         </div>
@@ -72,21 +77,21 @@ class TerminalNavigation extends Component {
     });
 
     return (
-      <div className={ `terminal-nav ${ className }` }>
-        <div className="terminal">
-          <div className="menu-bar">
-            <div className="close" onClick={ this.props.closeTerminal }></div>
+      <div className={ `no-select terminal-nav ${ className }` }>
+        <div className="no-select terminal">
+          <div className="no-select menu-bar">
+            <div className="no-select close" onClick={ this.props.closeTerminal }></div>
           </div>
-          <div className="shell" onClick={ this._focusCommandInput }>
-            <div className="previous">
+          <div className="no-select shell" onClick={ this._focusCommandInput }>
+            <div className="no-select previous">
               { previousExecutions }
             </div>
-            <div className="command-line">
+            <div className="no-select command-line">
               <PromptComponent promptPath={ path.substring(1) } />
               <input
                 key={ timestamp }
                 ref="commandInput"
-                className="command monospace"
+                className="no-select command monospace"
                 onKeyDown={ (evt) => {
                   this.props.executeCommand(evt, path);
                 } }

@@ -33,16 +33,20 @@ class Navigation extends Component {
       <div className="navs-container">
         <SimpleNavigation
           blurbs={ blurbs }
-          className={ !isTerm ? NAV_TOP : '' }
+          className={ `no-select ${ !isTerm ? NAV_TOP : '' }` }
         />
         <TerminalNavigation
           blurbs={ blurbs }
           closeTerminal={ this.props.toggleTerminal }
-          className={ `${isTerm ? NAV_TOP : ''} ${ !showIcon ? 'hide' : '' }` }
+          className={
+            `no-select ${isTerm ? NAV_TOP : ''} ${ !showIcon ? 'hide' : '' }`
+          }
           key="terminal"
         />
         <div
-          className={ `launcher-icon ${ !isTerm && showIcon ? NAV_TOP : '' }` }
+          className={
+            `no-select launcher-icon ${ !isTerm && showIcon ? NAV_TOP : '' }`
+          }
           onClick={ this.props.toggleTerminal }
         >
           <div className="menu-bar"></div>
