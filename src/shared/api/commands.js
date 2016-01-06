@@ -14,8 +14,10 @@ import blurbs from 'static/blurbs/index.json';
 export const HELP_RESPONSE = `- clear: Clear the shell\n
     - help: Get a list of possible commands\n
     - ls: List possible pages or folders to go to\n
+    - cd: Change directory\n
     - open: Go to a page or folder (just another page that holds more pages)\n
-    - cat: Same as 'open' but also prints the file used to render the page`;
+    - cat: Same as 'open' but also prints the file used to render the page\n\n
+    Or you can close the terminal for a more tradition navigation method!`;
 
 const blurbPaths = _.map(blurbs, (blurb) => {
   return blurb.file.replace(/\.md$/, '');
