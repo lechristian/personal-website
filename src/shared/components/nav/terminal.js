@@ -29,16 +29,28 @@ class TerminalNavigation extends Component {
 
   componentDidUpdate() {
     const { terminal, deleteRedirect } = this.props;
-    const { redirect } = terminal;
+    const { redirect, selector, prevSelector, executed } = terminal;
     if (redirect) {
       this.props.pushState(null, redirect, '');
       deleteRedirect();
     }
 
-    this._focusCommandInput();
+    let inputValue = null;
+    if (selector !== 0) {
+      inputValue = executed[executed.length - selector].command;
+    } else if (prevSelector !== 0) {
+      inputValue = '';
+    }
+
+    this._focusCommandInput({
+      newInputValue: inputValue
+    });
   }
 
-  _focusCommandInput() {
+  _focusCommandInput(data) {
+    if (data && data.newInputValue) {
+      this.refs.commandInput.value = data.newInputValue;
+    }
     this.refs.commandInput.focus();
   }
 

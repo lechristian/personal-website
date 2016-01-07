@@ -141,7 +141,9 @@ export default function terminalStateUpdater(command, statePath) {
         });
     } else {
       resolve({
-        response: UNKNOWN_RESPONSE
+        response: {
+          message: UNKNOWN_RESPONSE
+        }
       });
     }
   });
