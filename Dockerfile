@@ -1,4 +1,4 @@
-FROM node:5.3.0
+FROM node:5.4.0
 
 MAINTAINER Christian Le <christian@outcomes.com>
 
