@@ -43,14 +43,16 @@ class TerminalNavigation extends Component {
     }
 
     this._focusCommandInput({
+      shouldUpdate: inputValue !== null,
       newInputValue: inputValue
     });
   }
 
   _focusCommandInput(data) {
-    if (data && data.newInputValue) {
+    if (data && data.shouldUpdate) {
       this.refs.commandInput.value = data.newInputValue;
     }
+
     this.refs.commandInput.focus();
   }
 
