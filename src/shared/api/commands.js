@@ -17,7 +17,7 @@ export const HELP_RESPONSE = `- clear: Clear the shell\n
     - cd: Change directory\n
     - open: Go to a page or folder (just another page that holds more pages)\n
     - cat: Same as 'open' but also prints the file used to render the page\n\n
-    Or you can close the terminal for a more tradition navigation method!`;
+    Or you can close the terminal for a more traditional navigation!`;
 
 const blurbPaths = _.map(blurbs, (blurb) => {
   return blurb.file.replace(/\.md$/, '');
