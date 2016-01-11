@@ -7,7 +7,7 @@
 
   @media screen and (min-width: $break-point-terminal) {
     opacity: 0;
-    padding: 15%;
+    padding: 15% 12.5%;
     z-index: 1;
 
     &.nav-top {
@@ -60,7 +60,6 @@
 
       ul.inner {
         display: none;
-        list-style: circle inside;
 
         @media screen and (min-width: $break-point-terminal) {
           display: block;
@@ -76,12 +75,17 @@
           font-weight: 300;
           color: $l-grey;
           text-transform: none;
-          opacity: 0.75;
+          opacity: 0.7;
 
           transition: opacity 0.1s;
 
           &:hover {
             opacity: 1;
+          }
+
+          &.nav--blurbs-year {
+            list-style: none;
+            opacity: 0.7;
           }
 
           a {

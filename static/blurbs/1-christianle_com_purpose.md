@@ -1,7 +1,9 @@
 # Christianle.com: Purpose
 <!---
 Why I rebuilt my website, again, and the reasoning behind my technology choices.
+:01/01/16
 -->
+###### January 1, 2016
 
 ### Why
 

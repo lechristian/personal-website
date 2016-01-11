@@ -7,6 +7,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import moment from 'moment';
+
+const mdExtRegex = /\.md$/;
+const preNumRegex = /^[0-9]*/;
 
 class SimpleNavigation extends Component {
   constructor(props) {
@@ -16,12 +20,37 @@ class SimpleNavigation extends Component {
   render() {
     const { blurbs, className } = this.props;
 
-    const blurbLinks = _.map(blurbs, (blurb, index) => {
-      const fileName = blurb.file.replace(/\.md$/, '');
-      return (
-        <li key={ `blurb-${ index }` }>
-          <Link to={ `/blurbs/${ fileName }` }>
-            { blurb.title }
+    const blurbsReversed = [];
+    _.forEach(blurbs, (blurb) => {
+      const rowIndex = parseInt(blurb.file.match(preNumRegex), 10) - 1;
+      blurbsReversed[rowIndex] = blurb;
+    });
+    blurbsReversed.reverse();
+
+    let prevYear = 0;
+    const blurbLinks = [];
+    _.forEach(blurbsReversed, (blurb, index) => {
+      const blurbFileName = blurb.file.replace(mdExtRegex, '');
+      const blurbDate = moment(blurb.date, 'MM/DD/YYYY');
+
+      if (prevYear !== blurbDate.year()) {
+        prevYear = blurbDate.year();
+        blurbLinks.push(
+          <li key={ `blurbs-year-${ index }` } className="nav--blurbs-year">
+            { blurbDate.year() }
+          </li>
+        );
+      }
+
+      blurbLinks.push(
+        <li key={ `blurb-${ index }` } className="nav--blurbs">
+          <Link to={ `/blurbs/${ blurbFileName }` } className="nav--blurb">
+            <span className="date">
+              { blurbDate.format('M/D: ') }
+            </span>
+            <span className="title">
+              { blurb.title }
+            </span>
           </Link>
         </li>
       );

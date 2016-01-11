@@ -23,6 +23,11 @@ h5, .h5 {
   font-weight: normal;
 }
 
+h6, .h6 {
+  @include font-size(0.85);
+  font-weight: normal;
+}
+
 p, .p {
   @include font-size(1);
   font-weight: normal;
@@ -65,6 +70,14 @@ b, .bold {
 
 .center {
   text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
 }
 
 .monospace {

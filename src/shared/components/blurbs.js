@@ -10,6 +10,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
+import moment from 'moment';
 
 import { updateHelmetProps } from 'config/helmet';
 
@@ -37,10 +38,15 @@ class Blurbs extends Component {
             <p className="row--desc">
               { blurb.description }
             </p>
+            <p className="row--date light">
+              { moment(blurb.date, 'MM/DD/YYYY').format('MMMM D, YYYY') }
+            </p>
           </div>
         </Link>
       );
     });
+
+    rows.reverse();
 
     const helmetProps = updateHelmetProps(
       'http://christianle.com/blurbs',

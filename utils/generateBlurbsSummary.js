@@ -26,9 +26,10 @@ function extractSummary(rawSummaries) {
 
     temp.title = summary[1].substring(2);
     temp.description = '';
-    for (let i = 2; i < summary.length; i += 1) {
+    for (let i = 2; i < summary.length - 1; i += 1) {
       temp.description += summary[i];
     }
+    temp.date = summary[summary.length - 1].substring(1);
     summaries.push(temp);
   });
 

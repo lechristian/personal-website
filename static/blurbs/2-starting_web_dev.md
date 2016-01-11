@@ -2,7 +2,9 @@
 <!---
 Why I think getting started with web development is a pain in it's current
 state and what advice I would give as you start out.
+:01/08/16
 -->
+###### January 8, 2016
 
 ### Preface
 
