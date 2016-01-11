@@ -26,10 +26,8 @@ class Blurb extends Component {
   }
 
   componentDidMount() {
-    const { markdown, fileName } = this.props;
-    if (!markdown) {
-      this.props.fetchBlurb(fileName);
-    }
+    const { fileName } = this.props;
+    this.props.fetchBlurb(fileName);
   }
 
   componentWillReceiveProps(nextProps) {

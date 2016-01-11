@@ -43,7 +43,7 @@ class SimpleNavigation extends Component {
             </ul>
           </li>
           <li>
-            <Link to="/message">Contact</Link>
+            <Link to="/message">Message</Link>
           </li>
         </ul>
       </div>
