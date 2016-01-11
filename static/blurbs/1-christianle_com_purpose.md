@@ -17,50 +17,47 @@ is why blurbs on this website are written using
 I take all my notes in markdown, and it's a really quick way to create styled
 text without all the markup from HTML. It's just a personal preference thing.
 It's also great because now all my blurbs will be styled the same without me
-having to remember classes or ids or tags or whatever with html. I get a nice
+having to remember classes or ids or tags or whatever with HTML. I get a nice
 cohesive website without any troubles.
 
 A side benefit is that I don't need to have a database for my blurb
 entries, just have to save all my markdown files on the server and have it
-served. Is this best practices, no, did I want to build a CMS, no, so this was
-a compromise.
+served. This might not be best practices, but I didn't want to build a CMS, so
+this was a compromise.
 
 #### SEO
 
-I really wanted server side rendering for SEO, I pretty much don't exist
-according to Google. My old site had virtual no search engine optimization
-because I used Angular 1.3 and it as completely client rendered. Yes I know it's
-possible with Angular to get search engine optimization I just didn't find any
+I really wanted server side rendering for SEO. I pretty much don't exist
+according to Google. My old site had virtually no search engine optimization
+because I used Angular 1.3 and it was completely client rendered. I know it's
+possible with Angular to get search engine optimization but I didn't find any
 solution very clean or affordable. Hence the move to React/Flux and a
 "universal" app. Ooohhh buzz words, added benefit of the technology change.
 
-Oh and go ahead, turn off Javascript. It's not an SEO thing but at least now I
-won't have to listen to people saying
-*"hmmmmm won't work on IE8, you should fix that"*. And yea I know it's not
-going to be the prettiest website on IE8, I frankly just don't care. Please
-move to a modern browser, a more secure browser, if you're reading this on IE8/9
-and feeling offended. Trust me it's for your own good.
+Oh and go ahead, turn off Javascript. You can still view all content as
+intended. This goes along with the server rendering and SEO but mainly I'm able
+to support older browsers and broader range of devices.
 
 #### Learning
 
-I've been using React and Redux for all my project as of recent but they were
+I've been using React and Redux for all my projects as of recent but they were
 all hacked together with warnings left and right, so I wanted to make something
 using the technologies more correctly (I make no claims that I didn't hack some
-stuff together for this website). I definitely learned the most about webpack,
+stuff together for this website). I definitely learned the most about webpack.
 I understood practically none of it before but now I can at least say I put
-together my own webpack config. I'll write another blurb about what I learned
-later on.
+together my own webpack config.
 
 #### Fun
 
-I wanted to challenge myself, I was getting bored of web development and needed
-a way to get back into it. Redoing my website was how I did it. I strayed from
-web development for awhile to do mostly iOS things but this was my way back. And
-yea, if you're asking, it was fun making this website.
+I wanted to challenge myself. I've been in the web development scene for a
+couple years now and everything started to feel repetitive. I was getting bored
+of web development and needed a way to get back into it. Redoing my website was
+how I did it. I strayed from web development for awhile to do mostly iOS things
+but this was my way back.
 
 ### Purpose
 
-I didn't make this website just because, I  want to create a collection of
+I didn't make this website just because, I want to create a collection of
 resources I wish I had when I was starting out in web development. There will be
 a blurbs containing short tutorials, things I discover and find interesting in
 the web dev world, and probably some rants here and there. Hopefully I can
