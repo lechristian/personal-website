@@ -8,3 +8,5 @@ My website written with:
 * Webpack
 * Babel
 * And more...
+
+Blurbs proofread and edited with help from [Julia Sun](http://juliasun.io).
