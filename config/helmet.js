@@ -105,7 +105,7 @@ export const HelmetBaseConfig = {
     },
     {
       property: 'og:image',
-      content: '/favicon/apple-icon-180x180.png'
+      content: 'http://christianle.com/favicon/facebook.png'
     },
     {
       property: 'og:type',
