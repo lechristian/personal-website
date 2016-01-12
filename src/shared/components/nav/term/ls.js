@@ -21,7 +21,10 @@ class LsComponent extends Component {
         ? listing.substring(1, listing.length - 1)
         : listing.substring(1);
 
-      const name = listing.replace(/\/$/, '').split('/').pop();
+      let name = listing.replace(/\/$/, '').split('/').pop();
+      if (isFolder) {
+        name += '/';
+      }
 
       return {
         isFolder,
