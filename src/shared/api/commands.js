@@ -128,7 +128,7 @@ const possibleCommands = {
   }
 };
 
-export default function terminalStateUpdater(command, statePath) {
+export function terminalStateUpdater(command, statePath) {
   const commandParams = command.split(' ');
 
   return new Promise((resolve) => {
@@ -144,6 +144,53 @@ export default function terminalStateUpdater(command, statePath) {
         response: {
           message: UNKNOWN_RESPONSE
         }
+      });
+    }
+  });
+}
+
+export function tabComplete(command, statePath) {
+  const commandParams = command.split(' ');
+  const commandTest = commandParams[0];
+  return new Promise((resolve) => {
+    if (/^(cd|ls|open|cat)$/.test(commandTest)) {
+      const location = /\/$/.test(statePath) ? statePath : `${ statePath }/`;
+      const response = fileDirectory.listDirectory(location);
+
+      console.log(response);
+
+      if (response.error) {
+        resolve({
+          message: null
+        });
+      } else {
+        const prefix = statePath === '/' ? statePath : `${ statePath }/`;
+        const start = `${ prefix }${ commandParams[1].toLowerCase() }`;
+        let completed;
+        _.forEach(response, (possible) => {
+          if (possible.toLowerCase().indexOf(start) === 0) {
+            completed = possible;
+            return false;
+          }
+        });
+
+        if (completed !== undefined || completed !== null || completed !== '') {
+          if (/\/$/.test(completed)) {
+            completed = completed.substring(0, completed.length - 1);
+          }
+          completed = completed.split('/').pop();
+          resolve({
+            message: `${ commandTest } ${ completed }`
+          });
+        } else {
+          resolve({
+            message: null
+          });
+        }
+      }
+    } else {
+      resolve({
+        message: null
       });
     }
   });

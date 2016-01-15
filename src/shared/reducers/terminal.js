@@ -9,8 +9,8 @@ import _ from 'lodash';
 import {
   EXECUTE_COMMAND,
   PREVIOUS_COMMAND,
-  RESET_SELECTOR,
   DELETE_REDIRECT,
+  TAB_COMPLETE
 } from 'src/shared/actions/terminal';
 import { HELP_RESPONSE } from 'src/shared/api/commands';
 
@@ -25,7 +25,8 @@ const defaultTerminalState = {
   path: '/',
   render: true,
   selector: 0,
-  prevSelector: 0
+  prevSelector: 0,
+  tab: ''
 };
 
 function randomNum() {
@@ -61,6 +62,7 @@ export default function terminal(state = defaultTerminalState, action) {
       newState.timestamp = (new Date()).toString() + randomNum().toString();
       newState.selector = 0;
       newState.prevSelector = 0;
+      newState.tab = '';
       return newState;
 
     case PREVIOUS_COMMAND:
@@ -75,19 +77,21 @@ export default function terminal(state = defaultTerminalState, action) {
       }
 
       previousCommandState.prevSelector = state.selector;
+      previousCommandState.tab = '';
 
       return previousCommandState;
 
-    case RESET_SELECTOR:
-      const selectorState = _.clone(state);
-      selectorState.selector = 0;
-
-      return selectorState;
+    case TAB_COMPLETE:
+      const tabState = _.clone(state);
+      tabState.tab = action.res.message || '';
+      return tabState;
 
     case DELETE_REDIRECT:
       const deleteDirectState = _.clone(state);
       deleteDirectState.render = false;
       delete deleteDirectState.redirect;
+
+      deleteDirectState.tab = '';
 
       return deleteDirectState;
 

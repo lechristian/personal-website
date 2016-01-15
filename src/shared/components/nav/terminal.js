@@ -29,7 +29,7 @@ class TerminalNavigation extends Component {
 
   componentDidUpdate() {
     const { terminal, deleteRedirect } = this.props;
-    const { redirect, selector, prevSelector, executed } = terminal;
+    const { redirect, selector, prevSelector, executed, tab } = terminal;
     if (redirect) {
       this.props.pushState(null, redirect, '');
       deleteRedirect();
@@ -40,6 +40,8 @@ class TerminalNavigation extends Component {
       inputValue = executed[executed.length - selector].command;
     } else if (prevSelector !== 0) {
       inputValue = '';
+    } else if (tab !== null || tab !== undefined || tab !== '') {
+      inputValue = tab;
     }
 
     this._focusCommandInput({
@@ -94,7 +96,10 @@ class TerminalNavigation extends Component {
       <div className={ `no-select terminal-nav ${ className }` }>
         <div className="no-select terminal">
           <div className="no-select menu-bar">
-            <div className="no-select close" onClick={ this.props.closeTerminal }></div>
+            <div
+              className="no-select close"
+              onClick={ this.props.closeTerminal }
+            ></div>
           </div>
           <div className="no-select shell" onClick={ this._focusCommandInput }>
             <div className="no-select previous">
@@ -107,6 +112,10 @@ class TerminalNavigation extends Component {
                 ref="commandInput"
                 className="no-select command monospace"
                 onKeyDown={ (evt) => {
+                  if (evt.which === 9) {
+                    evt.preventDefault();
+                  }
+
                   this.props.executeCommand(evt, path);
                 } }
               />
