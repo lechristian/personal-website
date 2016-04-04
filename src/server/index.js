@@ -32,6 +32,17 @@ const logger = tracer.colorConsole();
 const api = router(express.Router());
 const app = express();
 
+
+if (process.env.NODE_ENV && process.env.NODE_ENV !== 'develop') {
+  app.use(function(req, res, next) {
+    if ((!req.secure) && (req.get('X-Forwarded-Proto') !== 'https')) {
+      res.redirect('https://' + req.get('Host') + req.url);
+    } else {
+      next();
+    }
+  });
+}
+
 app.use(bodyParser.urlencoded({
   extended: false
 }));

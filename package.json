@@ -7,7 +7,8 @@
     "clean": "rm -rf dist",
     "dev": "NODE_ENV=development node --harmony index.js --progress --colors --profile",
     "start": "NODE_ENV=production node --harmony index.js --progress --colors --profile",
-    "build": "npm run clean && NODE_ENV=production ./node_modules/.bin/webpack -p --progress --colors --profile"
+    "build": "npm run clean && NODE_ENV=production ./node_modules/.bin/webpack -p --progress --colors --profile",
+    "test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",

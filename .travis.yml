@@ -1,0 +1,22 @@
+before_install:
+- nvm install stable
+- nvm use stable
+install:
+- npm install
+- npm rebuild node-sass
+before_script: echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+script:
+- npm run build
+deploy:
+  skip_cleanup: true
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: Personal
+  env: christianle
+  upload-dir: travis
+  bucket_name: christianle
+  on:
+    branch: master
+  access_key_id: AKIAJTWRFH63KOSPXBJA
+  secret_access_key:
+    secure: YREJ4e1WQZS9YYBBx08P3+xK6ON7H7+mB26EjFf0dYIXtO4EXq7iaSFySwORVRQgTAWAyGNMzhEJhGCEAaUHB7Eu/zzpqO50e2Z3WNakW/CueKdu3tUTZOuR+gCQY2yLMKHIfSfPOtDfDIf+3Qfd0Ye6DsyuGSZ0lFH/dulVBJJjKX0wDojLJysuRdAjEK05Hme7IzMjstpVeO3Q6bJ6rdGPUHPdnZOtH6B79y2vvHPDnXhJHAXB5o1HNyJ78mdakYVoLzHry6RtMUiTA4RitVMWSCxKtR/U4XxWavsBQhG2isX1sbw6te1ofnHs9zM2cKAcTjmUGhHTRevaT51LfuBI9Lw1QPHoGSyvEWEu+tjEs9FeapnzpvsS8ErWsP40iPmcHoPPTz8g+oPRVuNCBYf4OyBIzkM1hMp9sqap8KDknerUQEpb6mLasRMz2ew7AdgOCKc4GGazt3Ll+DC6mS3wHu8B4kfQeuBdRSvZvaQ9i61TyCZv+734DAxACiWX7+UP5LassqtaR50jKFRRX82xQLIKsAaWCIC9BmOgjf8q77/nBmsI6hXhoOWXM3UnodM1AkEt8pED2gtMVuDcBIgLkqE3FLE+ZuvRgCcOo5ZrpkzCqRWaA/wzr4cLCScy5UO6PGck9jN2JU8gHZmy7RaanNyyRD7OG/GJhn3KJtI=
