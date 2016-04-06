@@ -12,7 +12,7 @@ deploy:
   provider: elasticbeanstalk
   region: us-east-1
   app: christianle
-  env: master
+  env: christianle-master
   upload-dir: travis
   bucket_name: christianle
   on:
