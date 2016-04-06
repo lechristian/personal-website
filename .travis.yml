@@ -11,8 +11,8 @@ deploy:
   skip_cleanup: true
   provider: elasticbeanstalk
   region: us-east-1
-  app: christianle
-  env: lechristian
+  app: personal
+  env: christianle
   upload-dir: travis
   bucket_name: christianle
   on:
