@@ -10,6 +10,7 @@ ADD . /usr/src/app
 WORKDIR /usr/src/app
 
 # Install npm packages
+RUN npm install
 RUN npm rebuild node-sass
 
 # Expose port 3000 for app
