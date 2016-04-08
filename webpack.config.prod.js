@@ -38,7 +38,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         BROWSER: JSON.stringify(true),
-        GA_ID: JSON.stringify(process.env.GA_ID || '')
+        GA_ID: JSON.stringify(process.env.GA_ID || 'UA-49527002-6')
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
