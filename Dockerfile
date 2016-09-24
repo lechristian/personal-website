@@ -1,6 +1,6 @@
 FROM node:5.10.0-slim
 
-MAINTAINER Christian Le <christian@outcomes.com>
+MAINTAINER Christian Le <christianle94@gmail.com>
 
 # Copy over app
 RUN mkdir -p /usr/src/app
