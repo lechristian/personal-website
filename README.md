@@ -10,3 +10,4 @@ My website written with:
 * And more...
 
 Blurbs proofread and edited with help from [Julia Sun](http://juliasun.io).
+
