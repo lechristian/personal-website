@@ -13,6 +13,7 @@ WORKDIR /usr/src/app
 RUN rm -rf node_modules
 
 # Install npm packages
+RUN ./bin/install.sh
 RUN npm rebuild node-sass
 RUN npm run build
 
