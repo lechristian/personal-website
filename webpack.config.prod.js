@@ -33,7 +33,6 @@ module.exports = {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new ExtractTextPlugin('style.css'),
-    new WebpackOutputStatsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -44,6 +43,7 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       screw_ie8: false
-    })
+    }),
+    new WebpackOutputStatsPlugin()
   ]
 };

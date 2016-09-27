@@ -9,6 +9,9 @@ ADD . /usr/src/app
 # Set working directory for app
 WORKDIR /usr/src/app
 
+# Remove node_modules
+RUN rm -rf node_modules
+
 # Install npm packages
 RUN npm rebuild node-sass
 RUN npm run build

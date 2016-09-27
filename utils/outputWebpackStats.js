@@ -29,8 +29,8 @@ module.exports = function(stats, publicPath) {
       .map(chunk => `${ publicPath }${ chunk }`);
   };
 
-  const script = getChunks('app', /js/);
-  const style = getChunks('app', /css/);
+  const script = getChunks('main', /js/);
+  const style = getChunks('main', /css/);
 
   const imagesRegex = /\.(jpe?g|png|gif|svg)$/;
   const images = json.modules
