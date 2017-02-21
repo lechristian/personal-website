@@ -1,6 +1,9 @@
-FROM node:6.6.0-slim
+FROM node:7.5.0-slim
 
-MAINTAINER Christian Le <christianle94@gmail.com>
+MAINTAINER Christian Le <cle1994> (hi@christianle.com)
+
+# Install Yarn
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # Copy over app
 RUN mkdir -p /usr/src/app
@@ -13,8 +16,7 @@ WORKDIR /usr/src/app
 RUN rm -rf node_modules
 
 # Install npm packages
-RUN ./bin/install.sh
-RUN npm rebuild node-sass
+RUN yarn install
 RUN npm run build
 
 # Expose port 3000 for app
