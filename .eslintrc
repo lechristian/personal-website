@@ -4,14 +4,7 @@
     "airbnb"
   ],
   "rules": {
-    "semi": [ 2, "always" ],
-    "comma-dangle": 0,
-    "no-console": 0,
-    "func-names": 0,
-    "no-else-return": 0,
-    "react/jsx-boolean-value": 0
+    "semi": [ 2, "always" ]
   },
-  "plugins": [
-    "eslint-plugin-babel"
-  ]
+  "plugins": []
 }
