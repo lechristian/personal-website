@@ -22,7 +22,7 @@ class Home extends Component {
           </p>
           <p className="h3 light lineheight-m">
             a <b>
-              <a href="https://github.com/cle1994" target="_blank">
+              <a href="https://github.com/lechristian" target="_blank">
                 software engineer
               </a>
             </b>
@@ -69,7 +69,7 @@ class Home extends Component {
         </div>
         <div className="links">
           <div className="link">
-            <a href="https://github.com/cle1994" target="_blank">GitHub</a>
+            <a href="https://github.com/lechristian" target="_blank">GitHub</a>
           </div>
           <div className="link">
             <a href="https://www.linkedin.com/in/christianle94" target="_blank">LinkedIn</a>
