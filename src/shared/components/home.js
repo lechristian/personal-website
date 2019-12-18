@@ -5,7 +5,6 @@
  * ========================================================================== */
 
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 
 import requireImage from 'utils/requireImage';
 
@@ -34,37 +33,29 @@ class Home extends Component {
               <a href="https://goo.gl/knXZm4" target="_blank">
                 Bay Area
               </a>
-            </b> as a recent graduate from <b>
+            </b>. I graduated from <b>
               <a href="http://www.berkeley.edu/" target="_blank">
                 UC Berkeley
               </a>
-            </b>. I co-founded and am currently working at <b>
-              <a href="https://www.outcomes.com" target="_blank">
-                Outcomes.com
+            </b>, co-founded Outcomes.com, helped grow <b>
+              <a href="https://yelp.com/reservations" target="_blank">
+                Yelp Reservations
+              </a>
+            </b>, and am currently working on the <b>
+              <a href="https://squareup.com/business-debit-card" target="_blank">
+                Square Card
               </a>
             </b>.
           </p>
         </div>
         <div className="margin-bottom-4">
           <p className="h4 light margin-bottom-2">
-            Welcome to my website, a place that holds a small collection of my
+            You can find a small collection of my photos
             <b>
-              <Link to={'/photos'}>
-                &nbsp;photos
-              </Link>
-            </b>, a place where I can host my
-            <b>
-              <Link to={'/blurbs'}>
-                &nbsp;rants and blurbs
-              </Link>
-            </b> about anything, a place that I use to practice my web
-            development, and at the end of the day, a place about me.
-            So a little about me...
-          </p>
-          <p className="h4 light margin-bottom-2">
-            I spend my free time flying quadcopters, drinking boba/tea,
-            catching up on TV shows, attemping to go on photo adventures, and
-            contemplating when I'll next pick up my tennis racket.
+              <a href="https://thecle.me" target="_blank">
+                here (thecle.me).
+              </a>
+            </b>.
           </p>
         </div>
         <div className="links">
@@ -73,9 +64,6 @@ class Home extends Component {
           </div>
           <div className="link">
             <a href="https://www.linkedin.com/in/christianle94" target="_blank">LinkedIn</a>
-          </div>
-          <div className="link">
-            <Link to={'/message'}>Message</Link>
           </div>
         </div>
       </div>

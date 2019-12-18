@@ -36,6 +36,11 @@ class Photos extends Component {
           <h1 className="title center">
             Photos
           </h1>
+          <h3>
+            You can find more photos on my dedicated photos website <b>
+              <a href="https://thecle.me" target="_blank">here (thecle.me)</a>
+            </b>.
+          </h3>
           { photos }
           <div className="nav-links">
             <Link to={'/blurbs'} className="inline">Blurbs</Link>
