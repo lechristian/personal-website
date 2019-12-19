@@ -9,6 +9,9 @@ ADD . /usr/src/app
 # Set working directory for app
 WORKDIR /usr/src/app
 
+# Install Python
+RUN apt-get update || : && apt-get install python build-essential -y
+
 # Remove node_modules
 RUN rm -rf node_modules
 
