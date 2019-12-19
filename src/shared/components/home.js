@@ -41,7 +41,7 @@ class Home extends Component {
               <a href="https://yelp.com/reservations" target="_blank">
                 Yelp Reservations
               </a>
-            </b>, and am currently working on the <b>
+            </b>, and now I work on the <b>
               <a href="https://squareup.com/business-debit-card" target="_blank">
                 Square Card
               </a>
@@ -50,10 +50,9 @@ class Home extends Component {
         </div>
         <div className="margin-bottom-4">
           <p className="h4 light margin-bottom-2">
-            You can find a small collection of my photos
-            <b>
+            You can find a small collection of my photos <b>
               <a href="https://thecle.me" target="_blank">
-                here (thecle.me).
+                here (thecle.me)
               </a>
             </b>.
           </p>

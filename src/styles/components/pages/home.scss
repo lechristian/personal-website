@@ -3,15 +3,11 @@
   .logo {
     width: 128px;
     margin: 0 auto;
-    margin-top: 4%;
+    margin-top: 20%;
     margin-bottom: 8%;
 
     img {
       width: 100%;
-    }
-
-    @media screen and (min-width: $break-point-terminal) {
-      margin-top: 8%;
     }
   }
 
