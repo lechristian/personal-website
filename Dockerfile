@@ -1,4 +1,4 @@
-FROM node:6.6.0-slim
+FROM node:11.5.0-slim
 
 MAINTAINER Christian Le <christianle94@gmail.com>
 
